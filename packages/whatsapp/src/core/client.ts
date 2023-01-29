@@ -25,6 +25,7 @@ export const createClient = () => {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
+      executablePath: process.env.CHROME_BIN,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
