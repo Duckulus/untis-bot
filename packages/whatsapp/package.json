@@ -1,0 +1,22 @@
+{
+  "name": "whatsapp",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.7",
+    "@types/qrcode-terminal": "^0.12.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "db": "*",
+    "logger": "*",
+    "node-cron": "^3.0.2",
+    "qrcode-terminal": "^0.12.0",
+    "webuntis": "^2.0.3",
+    "whatsapp-web.js": "^1.19.3"
+  }
+}

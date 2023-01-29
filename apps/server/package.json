@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node .",
+    "dev": "yarn start"
+  },
+  "dependencies": {
+    "whatsapp": "*"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
