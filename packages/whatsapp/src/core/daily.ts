@@ -26,7 +26,7 @@ export const startDailyJob = (client: Client) => {
       try {
         const untis = new WebUntis(untis_school, untis_username, untis_password, untis_eap)
         await untis.login()
-        timetable = (await untis.getOwnTimetableFor(new Date(1675378800000)))
+        timetable = (await untis.getOwnTimetableFor(new Date()))
         await untis.logout()
       }catch (e) {
         await client.sendMessage(contact._serialized, "Error fetching Timetable. Please check your credentials.")

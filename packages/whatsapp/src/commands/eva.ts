@@ -36,7 +36,7 @@ Command.create({
     try {
       const untis = new WebUntis(untis_school, untis_username, untis_password, untis_eap)
       await untis.login()
-      timetable = (await untis.getOwnTimetableFor(date))
+      timetable = (await untis.getOwnTimetableFor(date)).filter(l => l.substText?.toLowerCase() == "eva")
       await untis.logout()
     }catch (e) {
       await msg.reply( "Error fetching Timetable. Please check your credentials.")
