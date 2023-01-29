@@ -8,10 +8,11 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "start": "turbo run start",
+    "start": "yarn prisma:gen && turbo run start",
     "deploy": "yarn db generate && yarn start",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
+    "prisma:gen": "yarn workspace db prisma db push",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
