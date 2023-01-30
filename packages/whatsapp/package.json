@@ -14,6 +14,7 @@
   "dependencies": {
     "db": "*",
     "logger": "*",
+    "tsconfig":  "*",
     "node-cron": "^3.0.2",
     "qrcode-terminal": "^0.12.0",
     "webuntis": "^2.0.3",

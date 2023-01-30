@@ -9,7 +9,8 @@
     "dev": "yarn start"
   },
   "dependencies": {
-    "whatsapp": "*"
+    "whatsapp": "*",
+    "tsconfig":  "*"
   },
   "devDependencies": {
     "typescript": "^4.7.4"
