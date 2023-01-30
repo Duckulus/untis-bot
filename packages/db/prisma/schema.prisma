@@ -10,7 +10,7 @@ datasource db {
 model User {
   number         String   @id @unique
   createdAt      DateTime @default(now())
-  subscribed     Boolean  @default(false)
+  subscribed     Boolean  @default(true)
   untis_school   String   @default("")
   untis_username String   @default("")
   untis_password String   @default("")
