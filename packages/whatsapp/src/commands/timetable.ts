@@ -1,6 +1,6 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
 import { Lesson, WebUntis } from "webuntis";
-import { getNextDayOfTheWeek, parseTimetable } from "../utils/timetable";
+import { getDate, parseTimetable } from "../utils/timetable";
 
 Command.create({
   name: "timetable",
@@ -21,12 +21,7 @@ Command.create({
       return;
     }
 
-    let date;
-    if (day.toLowerCase() == "today") {
-      date = new Date();
-    } else {
-      date = getNextDayOfTheWeek(day);
-    }
+    let date = getDate(day);
 
     const { untis_school, untis_username, untis_password, untis_eap } = user;
 

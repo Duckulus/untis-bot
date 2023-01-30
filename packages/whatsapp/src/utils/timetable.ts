@@ -20,6 +20,19 @@ const parseTime = (time: number): string => {
   ].join("");
 };
 
+export const getDate = (day: string) => {
+  let date;
+  if (day.toLowerCase() == "today") {
+    date = new Date();
+  } else if (day.toLowerCase() == "tomorrow") {
+    date = new Date();
+    date.setDate(date.getDate() + 1);
+  } else {
+    date = getNextDayOfTheWeek(day);
+  }
+  return date;
+};
+
 export const getNextDayOfTheWeek = (
   dayName: string,
   excludeToday = true,
