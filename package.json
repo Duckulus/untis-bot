@@ -9,6 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "start": "yarn workspace server run start",
+    "turbo:start": "yarn turbo start",
     "deploy": "yarn db generate && yarn start",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",

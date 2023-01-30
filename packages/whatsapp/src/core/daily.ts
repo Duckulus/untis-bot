@@ -4,9 +4,11 @@ import {Client} from "whatsapp-web.js";
 import {COMMAND_PREFIX} from "./command";
 import {Lesson, WebUntis} from "webuntis";
 import {parseTimetable} from "../utils/timetable";
+import {logger} from "logger";
 
 export const startDailyJob = (client: Client) => {
-  cron.schedule('0 7 * * Monday-Friday', async () => {
+  cron.schedule('0 7 * * 1-5', async () => {
+    logger.info("Running daily job")
 
     const users = await getAllUsers()
     for (let user of users) {
