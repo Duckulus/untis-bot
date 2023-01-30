@@ -1,2 +1,2 @@
-export * from "./core/client"
-export * from "./core/daily"
+export * from "./core/client";
+export * from "./core/daily";

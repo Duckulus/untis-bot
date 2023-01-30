@@ -46,7 +46,7 @@ export const createClient = () => {
   });
 
   client.on("message_create", async (message: Message) => {
-    await Command.handleMessage(message);
+    await Command.handleMessage(message, client);
   });
 
   return client;

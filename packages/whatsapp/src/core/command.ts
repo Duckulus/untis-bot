@@ -1,10 +1,10 @@
 import fs from "fs";
-import {Message} from "whatsapp-web.js";
-import {logger} from "logger";
+import { Client, Message } from "whatsapp-web.js";
+import { logger } from "logger";
 import path from "path";
-import {getUser, upsertUser, User} from "db"
+import { getUser, upsertUser, User } from "db";
 
-export const COMMAND_PREFIX = ";"
+export const COMMAND_PREFIX = ";";
 
 export class Command {
   name: string;
@@ -14,19 +14,24 @@ export class Command {
   examples?: string[];
   tags?: string[];
 
-  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
+  execute: (
+    msg: Message,
+    args: string[],
+    client: Client,
+    user?: User
+  ) => void | Promise<void>;
 
   static commands: Command[] = [];
 
   private constructor({
-                        name,
-                        description,
-                        aliases,
-                        usage,
-                        tags,
-                        examples,
-                        execute,
-                      }: CommandSettings) {
+    name,
+    description,
+    aliases,
+    usage,
+    tags,
+    examples,
+    execute,
+  }: CommandSettings) {
     this.name = name;
     this.description = description;
     this.aliases = aliases;
@@ -65,7 +70,7 @@ export class Command {
     await Command.addCommandsRecursive(`${__dirname}/../commands`, "");
   };
 
-  static handleMessage = async (message: Message) => {
+  static handleMessage = async (message: Message, client: Client) => {
     let content = message.body;
 
     if (!content.toLocaleLowerCase().startsWith(COMMAND_PREFIX)) {
@@ -74,9 +79,9 @@ export class Command {
 
     const contact = await message.getContact();
     await upsertUser({
-      number: contact.number
-    })
-    const user = await getUser(contact.number)
+      number: contact.number,
+    });
+    const user = await getUser(contact.number);
 
     content = message.body.slice(COMMAND_PREFIX.length);
     const args = content.split(" ");
@@ -90,11 +95,10 @@ export class Command {
         command.name === commandName ||
         (command.aliases && command.aliases.includes(commandName))
       ) {
-
         logger.info(`Executing Command ${command.name} with args [${args}]`);
 
         try {
-          await command.execute(message, args, user ?? undefined);
+          await command.execute(message, args, client, user ?? undefined);
         } catch (e) {
           logger.error(e);
           await message.reply(
@@ -114,5 +118,10 @@ export interface CommandSettings {
   usage?: string;
   tags?: string[];
   examples?: string[];
-  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
+  execute: (
+    msg: Message,
+    args: string[],
+    client: Client,
+    user?: User
+  ) => void | Promise<void>;
 }
