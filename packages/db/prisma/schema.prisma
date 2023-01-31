@@ -14,5 +14,5 @@ model User {
   untis_school   String   @default("")
   untis_username String   @default("")
   untis_password String   @default("")
-  untis_eap      String   @default("")
+  untis_eap      String   @default("ajax.webuntis.com")
 }

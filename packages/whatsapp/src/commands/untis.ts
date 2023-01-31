@@ -6,16 +6,10 @@ Command.create({
   name: "untis",
   description: "sets your untis credentials",
   execute: async (msg, args, client, user) => {
-    const [untis_school, untis_username, untis_password, untis_eap] = args;
-    if (
-      !untis_school ||
-      !untis_username ||
-      !untis_password ||
-      !untis_eap ||
-      !user
-    ) {
+    const [untis_school, untis_username, untis_password] = args;
+    if (!untis_school || !untis_username || !untis_password || !user) {
       await msg.reply(
-        `Missing information. Usage: ${COMMAND_PREFIX}untis <school> <username> <password> <eap_url>`
+        `Missing information. Usage: ${COMMAND_PREFIX}untis <school> <username> <password>`
       );
       return;
     } else {
@@ -24,7 +18,7 @@ Command.create({
           untis_school,
           untis_username,
           untis_password,
-          untis_eap
+          user.untis_eap
         );
         await untis.login();
         await untis.logout();
@@ -33,7 +27,6 @@ Command.create({
           untis_school,
           untis_username,
           untis_password,
-          untis_eap,
         });
         await msg.reply("Credentials Changed Successfully!");
       } catch (e) {
