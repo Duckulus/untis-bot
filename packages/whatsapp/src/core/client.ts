@@ -21,7 +21,7 @@ const findMyContact = async (client: Client) => {
   logger.warn("Could not find my contact");
 };
 
-export const createClient = () => {
+const createClient = () => {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -46,8 +46,10 @@ export const createClient = () => {
   });
 
   client.on("message_create", async (message: Message) => {
-    await Command.handleMessage(message, client);
+    await Command.handleMessage(message);
   });
 
   return client;
 };
+
+export const whatsAppClient = createClient();

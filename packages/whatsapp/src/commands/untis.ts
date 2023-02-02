@@ -5,7 +5,7 @@ import { WebUntis } from "webuntis";
 Command.create({
   name: "untis",
   description: "sets your untis credentials",
-  execute: async (msg, args, client, user) => {
+  execute: async (msg, args, user) => {
     const [untis_school, untis_username, untis_password] = args;
     if (!untis_school || !untis_username || !untis_password || !user) {
       await msg.reply(

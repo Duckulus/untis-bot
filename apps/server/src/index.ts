@@ -1,6 +1,4 @@
-import { createClient, startDailyJob } from "whatsapp";
+import { whatsAppClient, startDailyJob } from "whatsapp";
 
-const client = createClient();
-client.initialize();
-
-startDailyJob(client);
+whatsAppClient.initialize();
+startDailyJob(whatsAppClient);

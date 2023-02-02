@@ -5,7 +5,7 @@ import { getDate, parseTimetable } from "../utils/timetable";
 Command.create({
   name: "timetable",
   description: "shows your timetable",
-  execute: async (msg, args, client, user) => {
+  execute: async (msg, args, user) => {
     if (!user) {
       await msg.reply("User not found, please try again later");
       return;

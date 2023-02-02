@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Client, Message } from "whatsapp-web.js";
+import { Message } from "whatsapp-web.js";
 import { logger } from "logger";
 import path from "path";
 import { getUser, upsertUser, User } from "db";
@@ -17,7 +17,6 @@ export class Command {
   execute: (
     msg: Message,
     args: string[],
-    client: Client,
     user?: User
   ) => void | Promise<void>;
 
@@ -70,7 +69,7 @@ export class Command {
     await Command.addCommandsRecursive(`${__dirname}/../commands`, "");
   };
 
-  static handleMessage = async (message: Message, client: Client) => {
+  static handleMessage = async (message: Message) => {
     let content = message.body;
 
     if (!content.toLocaleLowerCase().startsWith(COMMAND_PREFIX)) {
@@ -98,7 +97,7 @@ export class Command {
         logger.info(`Executing Command ${command.name} with args [${args}]`);
 
         try {
-          await command.execute(message, args, client, user ?? undefined);
+          await command.execute(message, args, user ?? undefined);
         } catch (e) {
           logger.error(e);
           await message.reply(
@@ -121,7 +120,6 @@ export interface CommandSettings {
   execute: (
     msg: Message,
     args: string[],
-    client: Client,
     user?: User
   ) => void | Promise<void>;
 }
