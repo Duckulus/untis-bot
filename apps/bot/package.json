@@ -1,12 +1,13 @@
 {
-  "name": "@untis-bot/server",
+  "name": "@untis-bot/bo",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc -b",
     "start": "node .",
-    "dev": "yarn start"
+    "build:start": "yarn run build && yarn run deploy",
+    "dev": "nodemon --exec yarn run build:start"
   },
   "dependencies": {
     "@untis-bot/tsconfig": "*",
