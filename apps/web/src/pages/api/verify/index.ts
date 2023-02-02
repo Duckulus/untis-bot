@@ -19,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResData>) => {
     return;
   }
 
-  const user = userParse.data;
+  const user: UserData = userParse.data;
   const token = await createVerification(user);
   res.status(200).json({ token });
 };
