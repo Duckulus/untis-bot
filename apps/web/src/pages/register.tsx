@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { UserData } from "@untis-bot/db";
@@ -15,6 +15,7 @@ const RegisterPage: NextPage = () => {
   };
 
   const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (
     values: UserData,
@@ -31,6 +32,9 @@ const RegisterPage: NextPage = () => {
     if (res.ok) {
       setSubmitting(false);
       router.push("/verify");
+    } else {
+      const data = await res.json();
+      setError(data.error);
     }
   };
 
@@ -64,6 +68,7 @@ const RegisterPage: NextPage = () => {
               <br />
               <Field type="text" name="untis_eap" />
             </div>
+            {error && <p className="text-red-500">{error}</p>}
             <button
               type="submit"
               disabled={isSubmitting}
