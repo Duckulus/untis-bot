@@ -4,5 +4,18 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist"]
+  "exclude": [
+    "dist"
+  ],
+  "references": [
+    {
+      "path": "../db"
+    },
+    {
+      "path": "../whatsapp"
+    },
+    {
+      "path": "../env"
+    }
+  ]
 }

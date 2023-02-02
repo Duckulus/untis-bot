@@ -4,5 +4,13 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "references": [
+    {
+      "path": "../../packages/whatsapp"
+    },
+    {
+      "path": "../../packages/api"
+    }
+  ]
 }

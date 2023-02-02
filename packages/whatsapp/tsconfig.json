@@ -4,5 +4,16 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "references": [
+    {
+      "path": "../db"
+    },
+    {
+      "path": "../logger"
+    },
+    {
+      "path": "../env"
+    }
+  ]
 }
