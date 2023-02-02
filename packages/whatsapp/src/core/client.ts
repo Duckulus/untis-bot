@@ -1,25 +1,7 @@
 import qrcode from "qrcode-terminal";
-import { Client, Message, LocalAuth, Contact } from "whatsapp-web.js";
+import { Client, Message, LocalAuth } from "whatsapp-web.js";
 import { Command } from "./command";
 import { logger } from "@untis-bot/logger";
-
-let me: Contact | undefined;
-export const myContact = () => {
-  return me;
-};
-
-const findMyContact = async (client: Client) => {
-  const contacts = await client.getContacts();
-  for (let contact of contacts) {
-    if (contact.isMe) {
-      me = contact;
-      logger.info(`Found my contact: ${me.pushname}`);
-      return;
-    }
-  }
-
-  logger.warn("Could not find my contact");
-};
 
 const createClient = () => {
   const client = new Client({
@@ -41,7 +23,6 @@ const createClient = () => {
 
   client.on("ready", async () => {
     await Command.registerAll();
-    await findMyContact(client);
     logger.info("Client is ready!");
   });
 
