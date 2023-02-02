@@ -1,8 +1,8 @@
 import fs from "fs";
 import { Message } from "whatsapp-web.js";
-import { logger } from "logger";
+import { logger } from "@untis-bot/logger";
 import path from "path";
-import { getUser, upsertUser, User } from "db";
+import { getUser, upsertUser, User } from "@untis-bot/db";
 
 export const COMMAND_PREFIX = ";";
 

@@ -1,4 +1,4 @@
-import { getWhatsappClient, startDailyJob } from "whatsapp";
+import { getWhatsappClient, startDailyJob } from "@untis-bot/whatsapp";
 
 const whatsappClient = getWhatsappClient();
 whatsappClient.initialize();

@@ -1,7 +1,7 @@
 import qrcode from "qrcode-terminal";
 import { Client, Message, LocalAuth, Contact } from "whatsapp-web.js";
 import { Command } from "./command";
-import { logger } from "logger";
+import { logger } from "@untis-bot/logger";
 
 let me: Contact | undefined;
 export const myContact = () => {

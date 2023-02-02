@@ -1,6 +1,6 @@
 {
-  "name": "logger",
-  "version": "1.0.0",
+  "name": "@untis-bot/logger",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "winston": "^3.8.2",
-    "tsconfig":  "*"
+    "@untis-bot/tsconfig":  "*"
   }
 }

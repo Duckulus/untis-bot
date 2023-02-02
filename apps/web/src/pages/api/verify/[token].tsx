@@ -1,4 +1,4 @@
-import { checkVerification } from "db";
+import { checkVerification } from "@untis-bot/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 

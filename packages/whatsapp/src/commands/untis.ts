@@ -1,5 +1,5 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
-import { upsertUser } from "db";
+import { upsertUser } from "@untis-bot/db";
 import { WebUntis } from "webuntis";
 
 Command.create({

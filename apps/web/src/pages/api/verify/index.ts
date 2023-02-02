@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { createVerification, UserData } from "db";
-import { verifyNumber } from "whatsapp";
+import { createVerification, UserData } from "@untis-bot/db";
+import { verifyNumber } from "@untis-bot/whatsapp";
 import { z } from "zod";
 
 export type VerifyResponse = { error?: string };

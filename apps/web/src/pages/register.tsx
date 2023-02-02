@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import { UserData } from "db";
+import { UserData } from "@untis-bot/db";
 import type { VerifyResponse } from "./api/verify";
 import { useRouter } from "next/router";
 
