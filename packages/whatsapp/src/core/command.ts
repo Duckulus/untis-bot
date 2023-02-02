@@ -73,10 +73,7 @@ export class Command {
     }
 
     const contact = await message.getContact();
-    await upsertUser({
-      number: contact.number,
-    });
-    const user = await getUser(contact.number);
+    const user = await getUser(`+${contact.number}`);
 
     content = message.body.slice(COMMAND_PREFIX.length);
     const args = content.split(" ");

@@ -14,13 +14,10 @@ const VerifyTokenPage: NextPage = () => {
     }
 
     const checkToken = async (token: string) => {
-      const data = await fetch(`${BACKEND_URL}/verify/${token}`, {
+      const res = await fetch(`${BACKEND_URL}/verify/${token}`, {
         method: "post",
       });
-      const res = await data.json();
-      setResult(
-        res.found ? "Phone Number validated" : "Invalid Validation Token"
-      );
+      setResult(res.ok ? "Phone Number validated" : "Invalid Validation Token");
     };
 
     checkToken(token);

@@ -5,6 +5,7 @@ import { createVerification, UserData } from "@untis-bot/db";
 import { verifyNumber } from "@untis-bot/whatsapp";
 import { z } from "zod";
 import { FRONTEND_URL } from "@untis-bot/env";
+import { WebUntis } from "webuntis";
 
 export type VerifyResponse = { error?: string };
 
@@ -33,8 +34,6 @@ export const createApi = () => {
   });
 
   app.post("/verify", async (req, res) => {
-    console.log(req.body);
-
     const userParse = userSchema.safeParse(req.body);
     if (!userParse.success) {
       res.status(400).json({ error: "Failed to validate input" });
@@ -42,17 +41,36 @@ export const createApi = () => {
     }
 
     const user: UserData = userParse.data;
+
+    try {
+      const untis = new WebUntis(
+        user.untis_school,
+        user.untis_username,
+        user.untis_password,
+        user.untis_eap
+      );
+      await untis.login();
+      await untis.logout();
+    } catch {
+      res.status(400).json({ error: "Invalid user credentials" });
+    }
+
     const token = await createVerification(user);
 
     await verifyNumber(user.number, token);
-    res.status(200);
+    res.status(200).send();
   });
 
   app.post("/verify/:token", async (req, res) => {
     const token = req.params.token;
     const found = await checkVerification(token);
 
-    res.status(200).json({ found });
+    if (!found) {
+      res.status(400).json({ error: "Invalid token" });
+      return;
+    }
+
+    res.status(200).send();
   });
 
   return app;

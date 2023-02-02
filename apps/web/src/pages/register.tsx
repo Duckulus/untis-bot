@@ -27,9 +27,8 @@ const RegisterPage: NextPage = () => {
         "Content-Type": "application/json",
       },
     });
-    const data = await res.json();
 
-    if (data) {
+    if (res.ok) {
       setSubmitting(false);
       router.push("/verify");
     }
