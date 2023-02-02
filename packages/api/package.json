@@ -18,6 +18,7 @@
     "@untis-bot/env": "*",
     "@untis-bot/tsconfig": "*",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "zod": "^3.20.2"
   }
 }
