@@ -8,7 +8,10 @@ export const tokenQuerySchema = z.object({
   token: z.string(),
 });
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<TokenVerificationResponse>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<TokenVerificationResponse>
+) => {
   const queryData = tokenQuerySchema.safeParse(req.query);
   if (!queryData.success) {
     res.status(400).json({ error: "Failed to validate input" });
