@@ -50,9 +50,7 @@ Command.create({
       timetable = await untis.getOwnTimetableFor(date);
       await untis.logout();
     } catch (e) {
-      await msg.reply(
-        "Error fetching Timetable."
-      );
+      await msg.reply("Error fetching Timetable.");
       return;
     }
     await msg.reply(
