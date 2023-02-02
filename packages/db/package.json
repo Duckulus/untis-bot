@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "tsc -b -w --preserveWatchOutput",
     "build": "prisma db push && tsc -b"
   },
   "devDependencies": {

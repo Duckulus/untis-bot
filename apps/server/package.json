@@ -9,10 +9,11 @@
     "dev": "yarn start"
   },
   "dependencies": {
-    "whatsapp": "*",
-    "tsconfig":  "*"
+    "tsconfig": "*",
+    "whatsapp": "*"
   },
   "devDependencies": {
+    "nodemon": "^2.0.20",
     "typescript": "^4.7.4"
   }
 }
