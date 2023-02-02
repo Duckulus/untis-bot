@@ -6,7 +6,9 @@ export const parseTimetable = (timetable: Lesson[]): string => {
     .map((lesson) => {
       return `${parseTime(lesson.startTime)}-${parseTime(lesson.endTime)} ${
         lesson.su[0].longname
-      } ${lesson.te[0].longname} (${lesson.substText ?? ""})`;
+      } ${lesson.te[0].longname} ${
+        lesson.substText ? `(${lesson.substText})` : ""
+      }`;
     })
     .join("\n");
 };
