@@ -14,11 +14,7 @@ export class Command {
   examples?: string[];
   tags?: string[];
 
-  execute: (
-    msg: Message,
-    args: string[],
-    user?: User
-  ) => void | Promise<void>;
+  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
 
   static commands: Command[] = [];
 
@@ -117,9 +113,5 @@ export interface CommandSettings {
   usage?: string;
   tags?: string[];
   examples?: string[];
-  execute: (
-    msg: Message,
-    args: string[],
-    user?: User
-  ) => void | Promise<void>;
+  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
 }
