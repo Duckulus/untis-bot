@@ -1,17 +1,18 @@
 {
-  "name": "@untis-bot/bo",
+  "name": "@untis-bot/server",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc -b",
     "start": "node .",
-    "build:start": "yarn run build && yarn run deploy",
+    "build:start": "yarn run build && yarn run start",
     "dev": "nodemon --exec yarn run build:start"
   },
   "dependencies": {
     "@untis-bot/tsconfig": "*",
-    "@untis-bot/whatsapp": "*"
+    "@untis-bot/whatsapp": "*",
+    "@untis-bot/api": "*"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

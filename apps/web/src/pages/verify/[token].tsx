@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import type { TokenVerificationResponse } from "../api/verify/[token]";
+import { BACKEND_URL } from "@untis-bot/env";
 
 const VerifyTokenPage: NextPage = () => {
   const router = useRouter();
@@ -14,15 +14,13 @@ const VerifyTokenPage: NextPage = () => {
     }
 
     const checkToken = async (token: string) => {
-      const data = await fetch(`/api/verify/${token}`, { method: "post" });
-      const res: TokenVerificationResponse = await data.json();
-      if (res.error) {
-        setResult(res.error);
-      } else {
-        setResult(
-          res.found ? "Phone Number validated" : "Invalid Validation Token"
-        );
-      }
+      const data = await fetch(`${BACKEND_URL}/verify/${token}`, {
+        method: "post",
+      });
+      const res = await data.json();
+      setResult(
+        res.found ? "Phone Number validated" : "Invalid Validation Token"
+      );
     };
 
     checkToken(token);

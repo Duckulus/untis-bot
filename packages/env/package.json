@@ -1,0 +1,16 @@
+{
+  "name": "@untis-bot/env",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc -b -w --preserveWatchOutput",
+    "build": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@untis-bot/tsconfig": "*"
+  }
+}

@@ -2,8 +2,8 @@ import React from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { UserData } from "@untis-bot/db";
-import type { VerifyResponse } from "./api/verify";
 import { useRouter } from "next/router";
+import { BACKEND_URL } from "@untis-bot/env";
 
 const RegisterPage: NextPage = () => {
   const initialValues: UserData = {
@@ -20,11 +20,14 @@ const RegisterPage: NextPage = () => {
     values: UserData,
     { setSubmitting }: FormikHelpers<UserData>
   ) => {
-    const res = await fetch("/api/verify", {
+    const res = await fetch(`${BACKEND_URL}/verify`, {
       method: "post",
       body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-    const data: VerifyResponse = await res.json();
+    const data = await res.json();
 
     if (data) {
       setSubmitting(false);

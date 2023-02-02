@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/whatsapp",
+  "name": "@untis-bot/api",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -8,18 +8,16 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@types/node-cron": "^3.0.7",
-    "@types/qrcode-terminal": "^0.12.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.16",
+    "@types/node": "^18.11.18",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@untis-bot/db": "*",
-    "@untis-bot/logger": "*",
     "@untis-bot/env": "*",
-    "@untis-bot/tsconfig":  "*",
-    "node-cron": "^3.0.2",
-    "qrcode-terminal": "^0.12.0",
-    "webuntis": "^2.0.3",
-    "whatsapp-web.js": "^1.19.3"
+    "@untis-bot/tsconfig": "*",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }
