@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createVerification, UserData } from "db";
+import { verifyNumber } from "whatsapp";
 import { z } from "zod";
 
-type ResData = { token?: string; error?: string };
+export type VerifyResponse = { error?: string };
 
 const userSchema = z.object({
   number: z.string(),
@@ -12,8 +13,11 @@ const userSchema = z.object({
   untis_eap: z.string(),
 });
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<ResData>) => {
-  const userParse = userSchema.safeParse(req.body);
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<VerifyResponse>
+) => {
+  const userParse = userSchema.safeParse(JSON.parse(req.body));
   if (!userParse.success) {
     res.status(400).json({ error: "Failed to validate input" });
     return;
@@ -21,7 +25,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResData>) => {
 
   const user: UserData = userParse.data;
   const token = await createVerification(user);
-  res.status(200).json({ token });
+
+  await verifyNumber(user.number, token);
+  res.status(200);
 };
 
 export default handler;
