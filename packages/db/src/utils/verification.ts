@@ -5,7 +5,7 @@ import { upsertUser } from "./user";
 
 const redis = new Redis();
 
-type UserData = Omit<Omit<User, "createdAt">, "subscribed">;
+export type UserData = Omit<Omit<User, "createdAt">, "subscribed">;
 
 export const createVerification = async (user: UserData) => {
   const token = v4();
