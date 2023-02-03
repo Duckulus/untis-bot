@@ -15,7 +15,9 @@
     "lint": "turbo run lint",
     "prisma:gen": "yarn workspace db prisma db push",
     "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docker:build": "docker compose build",
+    "docker:push": "docker compose push"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
@@ -26,7 +28,7 @@
   },
   "engines": {
     "npm": ">=7.0.0",
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "turbo": "latest"
