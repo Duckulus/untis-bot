@@ -6,16 +6,5 @@
   },
   "exclude": [
     "dist"
-  ],
-  "references": [
-    {
-      "path": "../db"
-    },
-    {
-      "path": "../whatsapp"
-    },
-    {
-      "path": "../env"
-    }
   ]
 }

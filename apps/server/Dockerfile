@@ -1,5 +1,5 @@
-FROM node:lts-slim AS builder
-RUN apt update
+FROM node:16-slim AS builder
+RUN apt-get update
 WORKDIR /app/
 
 RUN yarn global add turbo
@@ -7,11 +7,11 @@ RUN yarn global add turbo
 COPY . .
 RUN turbo prune --scope=@untis-bot/server --docker
 
-FROM node:lts-slim as installer
-RUN apt update
+FROM node:16-slim as installer
+RUN apt-get update
 WORKDIR /app/
 
-RUN apt install -y chromium
+RUN apt-get install -y chromium
 
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
@@ -21,13 +21,13 @@ RUN yarn install
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
 
-RUN yarn turbo run build --filter=@untis-bot/server
+RUN yarn turbo run build --filter=@untis-bot/server...
 
-FROM node:lts-slim as runner
-RUN apt update
+FROM node:16-slim as runner
+RUN apt-get update
 WORKDIR /app/
 
-RUN apt install -y chromium
+RUN apt-get install -y chromium
 
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock

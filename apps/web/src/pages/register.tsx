@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import { UserData } from "@untis-bot/db";
 import { useRouter } from "next/router";
 import { BACKEND_URL } from "@untis-bot/env";
+
+interface UserData {
+  number: string;
+  untis_school: string;
+  untis_username: string;
+  untis_password: string;
+  untis_eap: string;
+}
 
 const RegisterPage: NextPage = () => {
   const initialValues: UserData = {
