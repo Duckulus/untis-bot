@@ -1,12 +1,14 @@
 version: "3"
 services:
   server:
-    image: duckulus/untis-bot
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/bot
     container_name: untis-bot-server
     platform: ${DOCKER_PLATFORM}
     build:
       context: .
       dockerfile: ./apps/server/Dockerfile
+    env_file: 
+      - .env
     volumes:
       - ./apps/server/.wwebjs_auth:/app/apps/server/.wwebjs_auth
       - ./packages/db/prisma:/app/packages/db/prisma
@@ -16,7 +18,7 @@ services:
         max_attempts: 10
 
   web:
-    image: duckulus/untis-web
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/web
     container_name: untis-bot-web
     platform: ${DOCKER_PLATFORM}
     build:
