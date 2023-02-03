@@ -1,16 +1,8 @@
 {
-  "extends": "@untis-bot/tsconfig/base.json",
+  "extends": "@untis-bot/tsconfig/node.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist"],
-  "references": [
-    {
-      "path": "../../packages/whatsapp"
-    },
-    {
-      "path": "../../packages/api"
-    }
-  ]
+  "exclude": ["dist"]
 }

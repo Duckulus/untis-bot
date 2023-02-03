@@ -10,13 +10,13 @@
   "devDependencies": {
     "@types/node-cron": "^3.0.7",
     "@types/qrcode-terminal": "^0.12.0",
+    "@untis-bot/tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@untis-bot/db": "*",
     "@untis-bot/logger": "*",
     "@untis-bot/env": "*",
-    "@untis-bot/tsconfig":  "*",
     "node-cron": "^3.0.2",
     "qrcode-terminal": "^0.12.0",
     "webuntis": "^2.0.3",
