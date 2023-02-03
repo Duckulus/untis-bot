@@ -3,6 +3,7 @@ services:
   server:
     image: duckulus/untis-bot
     container_name: untis-bot-server
+    platform: ${DOCKER_PLATFORM}
     build:
       context: .
       dockerfile: ./apps/server/Dockerfile
@@ -15,7 +16,9 @@ services:
         max_attempts: 10
 
   web:
+    image: duckulus/untis-web
     container_name: untis-bot-web
+    platform: ${DOCKER_PLATFORM}
     build:
       context: .
       dockerfile: ./apps/web/Dockerfile
