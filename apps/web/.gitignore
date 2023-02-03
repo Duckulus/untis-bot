@@ -34,3 +34,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated via next-pwa
+**/public/workbox**
+**/public/sw**
+
+# Generated via Partytown
+**/public/~partytown/
+
+# Generated via next-sitemap
+**/public/robots.txt
+**/public/sitemap**
+
+# vscode settings
+.vscode/
