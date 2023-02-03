@@ -8,10 +8,10 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "@untis-bot/tsconfig": "*"
   },
   "dependencies": {
-    "winston": "^3.8.2",
-    "@untis-bot/tsconfig": "*"
+    "winston": "^3.8.2"
   }
 }

@@ -8,14 +8,14 @@
     "build": "prisma generate && tsc -b"
   },
   "devDependencies": {
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "@untis-bot/tsconfig": "*"
   },
   "dependencies": {
     "@prisma/client": "^4.9.0",
     "@types/uuid": "^9.0.0",
     "ioredis": "^5.3.0",
     "prisma": "^4.9.0",
-    "@untis-bot/tsconfig": "*",
     "uuid": "^9.0.0"
   }
 }
