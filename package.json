@@ -14,7 +14,7 @@
     "dev": "env-cmd turbo run dev --parallel",
     "lint": "turbo run lint",
     "prisma:gen": "yarn workspace db prisma db push",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md}\"",
     "prepare": "husky install"
   },
   "devDependencies": {
