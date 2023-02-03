@@ -14,7 +14,7 @@
     "dev": "env-cmd turbo run dev --parallel",
     "lint": "turbo run lint",
     "prisma:gen": "yarn workspace db prisma db push",
-    "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md,json}\"",
     "prepare": "husky install",
     "docker:build": "docker compose build",
     "docker:push": "docker compose push"
