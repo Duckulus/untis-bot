@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Image
         run: |
-          touch .env.prod.local
+          touch .env
           yarn docker:build
         env:
           DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY }}
