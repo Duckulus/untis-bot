@@ -1,6 +1,7 @@
 version: "3"
 services:
   server:
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/server
     container_name: untis-bot-server
     platform: ${DOCKER_PLATFORM}
     build:
@@ -17,6 +18,7 @@ services:
         max_attempts: 10
 
   web:
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/web
     container_name: untis-bot-web
     platform: ${DOCKER_PLATFORM}
     build:
