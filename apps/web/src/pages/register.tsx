@@ -18,7 +18,7 @@ const RegisterPage: NextPage = () => {
     untis_school: "",
     untis_username: "",
     untis_password: "",
-    untis_eap: "",
+    untis_eap: "ajax.webuntis.com",
   };
 
   const router = useRouter();
@@ -38,7 +38,7 @@ const RegisterPage: NextPage = () => {
 
     if (res.ok) {
       setSubmitting(false);
-      router.push("/verify");
+      await router.push("/verify");
     } else {
       const data = await res.json();
       setError(data.error);
