@@ -48,4 +48,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV CHROME_BIN="/usr/bin/chromium"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
 
+EXPOSE 4000
+
 CMD yarn workspace @untis-bot/server run start
