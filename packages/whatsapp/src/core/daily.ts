@@ -1,19 +1,38 @@
 import cron from "node-cron";
-import { getAllUsers } from "@untis-bot/db";
+import { getAllUsers, User } from "@untis-bot/db";
 import { Client } from "whatsapp-web.js";
 import { COMMAND_PREFIX } from "./command";
 import { Lesson, WebUntis } from "webuntis";
 import { parseTimetable } from "../utils/timetable";
 import { logger } from "@untis-bot/logger";
 
-export const startDailyJob = (client: Client) => {
-  cron.schedule("0 7 * * 1-5", async () => {
-    logger.info("Running daily job");
+const tasks: Map<string, cron.ScheduledTask> = new Map();
 
-    const users = await getAllUsers();
-    for (let user of users) {
-      const contact = await client.getNumberId(user.number);
-      if (!user.subscribed || !contact) continue;
+export const startDailyJob = async (client: Client) => {
+  const users = await getAllUsers();
+  for (let user of users) {
+    scheduleDailyTask(client, user, user.hours, user.minutes);
+  }
+};
+
+export const scheduleDailyTask = (
+  client: Client,
+  user: User,
+  hours: number,
+  minutes: number
+) => {
+  const task = tasks.get(user.number);
+  if (task) {
+    task.stop();
+  }
+
+  tasks.set(
+    user.number,
+    cron.schedule(`${minutes} ${hours} * * 1-5`, async () => {
+      logger.info("Running daily job for " + user.number);
+      const contact = await client.getNumberId(user.number.substr(1));
+
+      if (!user.subscribed || !contact) return;
 
       const { untis_school, untis_username, untis_password, untis_eap } = user;
 
@@ -28,7 +47,7 @@ export const startDailyJob = (client: Client) => {
           contact._serialized,
           `You are subscribed but there are no credentials associated with your account. Use ${COMMAND_PREFIX}unsubscribe to unsubscribe or ${COMMAND_PREFIX}untis to enter your credentials.`
         );
-        continue;
+        return;
       }
 
       let timetable: Lesson[];
@@ -47,7 +66,7 @@ export const startDailyJob = (client: Client) => {
           contact._serialized,
           "Error fetching Timetable. Please check your credentials."
         );
-        continue;
+        return;
       }
 
       let msg = "Daily Information\n\n";
@@ -70,6 +89,6 @@ export const startDailyJob = (client: Client) => {
         msg += "Sportsachen nicht vergessen!";
       }
       await client.sendMessage(contact._serialized, msg);
-    }
-  });
+    })
+  );
 };

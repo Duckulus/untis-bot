@@ -33,5 +33,4 @@ const createClient = () => {
   return client;
 };
 
-const whatsAppClient = createClient();
-export const getWhatsappClient = () => whatsAppClient;
+export const whatsAppClient = createClient();

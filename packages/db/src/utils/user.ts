@@ -25,8 +25,15 @@ export const setSubscribed = async (number: string, subscribed: boolean) => {
 };
 
 export const upsertUser = async (user: Partial<User>) => {
-  const { number, untis_username, untis_password, untis_school, untis_eap } =
-    user;
+  const {
+    number,
+    untis_username,
+    untis_password,
+    untis_school,
+    untis_eap,
+    hours,
+    minutes,
+  } = user;
   if (!number) return;
   await prisma.user.upsert({
     create: {
@@ -37,6 +44,8 @@ export const upsertUser = async (user: Partial<User>) => {
       untis_password,
       untis_school,
       untis_eap,
+      hours,
+      minutes,
     },
     where: {
       number,
