@@ -3,7 +3,10 @@ import { User } from "@prisma/client";
 import { upsertUser } from "./user";
 import { redisClient } from "../redisClient";
 
-export type UserData = Omit<Omit<User, "createdAt">, "subscribed">;
+export type UserData = Omit<
+  Omit<Omit<Omit<User, "createdAt">, "subscribed">, "hours">,
+  "minutes"
+>;
 
 export const createVerification = async (user: UserData) => {
   const token = v4();
