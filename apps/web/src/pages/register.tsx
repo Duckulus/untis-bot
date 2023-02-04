@@ -46,7 +46,7 @@ const RegisterPage: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center">
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ isSubmitting }) => (
           <Form>
