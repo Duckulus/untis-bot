@@ -1,10 +1,10 @@
 import cron from "node-cron";
-import { getAllUsers } from "db";
+import { getAllUsers } from "@untis-bot/db";
 import { Client } from "whatsapp-web.js";
 import { COMMAND_PREFIX } from "./command";
 import { Lesson, WebUntis } from "webuntis";
 import { parseTimetable } from "../utils/timetable";
-import { logger } from "logger";
+import { logger } from "@untis-bot/logger";
 
 export const startDailyJob = (client: Client) => {
   cron.schedule("0 7 * * 1-5", async () => {

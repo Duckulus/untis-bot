@@ -1,8 +1,8 @@
 import fs from "fs";
-import { Client, Message } from "whatsapp-web.js";
-import { logger } from "logger";
+import { Message } from "whatsapp-web.js";
+import { logger } from "@untis-bot/logger";
 import path from "path";
-import { getUser, upsertUser, User } from "db";
+import { getUser, User } from "@untis-bot/db";
 
 export const COMMAND_PREFIX = ";";
 
@@ -14,12 +14,7 @@ export class Command {
   examples?: string[];
   tags?: string[];
 
-  execute: (
-    msg: Message,
-    args: string[],
-    client: Client,
-    user?: User
-  ) => void | Promise<void>;
+  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
 
   static commands: Command[] = [];
 
@@ -70,7 +65,7 @@ export class Command {
     await Command.addCommandsRecursive(`${__dirname}/../commands`, "");
   };
 
-  static handleMessage = async (message: Message, client: Client) => {
+  static handleMessage = async (message: Message) => {
     let content = message.body;
 
     if (!content.toLocaleLowerCase().startsWith(COMMAND_PREFIX)) {
@@ -78,10 +73,7 @@ export class Command {
     }
 
     const contact = await message.getContact();
-    await upsertUser({
-      number: contact.number,
-    });
-    const user = await getUser(contact.number);
+    const user = await getUser(`+${contact.number}`);
 
     content = message.body.slice(COMMAND_PREFIX.length);
     const args = content.split(" ");
@@ -98,7 +90,7 @@ export class Command {
         logger.info(`Executing Command ${command.name} with args [${args}]`);
 
         try {
-          await command.execute(message, args, client, user ?? undefined);
+          await command.execute(message, args, user ?? undefined);
         } catch (e) {
           logger.error(e);
           await message.reply(
@@ -118,10 +110,5 @@ export interface CommandSettings {
   usage?: string;
   tags?: string[];
   examples?: string[];
-  execute: (
-    msg: Message,
-    args: string[],
-    client: Client,
-    user?: User
-  ) => void | Promise<void>;
+  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
 }

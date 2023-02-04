@@ -1,13 +1,61 @@
-version: "3.7"
+version: "3"
 services:
   server:
-    image: duckulus/untis-bot
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/server
+    container_name: untis-bot-server
+    platform: ${DOCKER_PLATFORM}
     build:
       context: .
       dockerfile: ./apps/server/Dockerfile
+    env_file: 
+      - .env
     volumes:
       - ./apps/server/.wwebjs_auth:/app/apps/server/.wwebjs_auth
       - ./packages/db/prisma:/app/packages/db/prisma
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+
+  web:
+    image: ${DOCKER_REGISTRY_URL}/untis-bot/web
+    container_name: untis-bot-web
+    platform: ${DOCKER_PLATFORM}
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+      args:
+        - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+        - NEXT_PUBLIC_FRONTEND_URL=${NEXT_PUBLIC_FRONTEND_URL}
+
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
+
+  redis:
+    container_name: untis-bot-redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:alpine
+    container_name: untis-bot-postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/clusters/pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     deploy:
       restart_policy:
         condition: on-failure

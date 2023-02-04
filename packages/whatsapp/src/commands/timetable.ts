@@ -1,11 +1,12 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
 import { Lesson, WebUntis } from "webuntis";
 import { getDate, parseTimetable } from "../utils/timetable";
+import { FRONTEND_URL } from "@untis-bot/env";
 
 Command.create({
   name: "timetable",
   description: "shows your timetable",
-  execute: async (msg, args, client, user) => {
+  execute: async (msg, args, user) => {
     if (!user) {
       await msg.reply("User not found, please try again later");
       return;
@@ -22,7 +23,6 @@ Command.create({
     }
 
     let date = getDate(day);
-
     const { untis_school, untis_username, untis_password, untis_eap } = user;
 
     if (
@@ -33,7 +33,7 @@ Command.create({
       !user
     ) {
       await msg.reply(
-        `Missing information. Use ${COMMAND_PREFIX}untis to enter your credentials.`
+        `Missing information. Consinder logging in at ${FRONTEND_URL}`
       );
       return;
     }
@@ -50,9 +50,7 @@ Command.create({
       timetable = await untis.getOwnTimetableFor(date);
       await untis.logout();
     } catch (e) {
-      await msg.reply(
-        "Error fetching Timetable. Please check your credentials."
-      );
+      await msg.reply("Error fetching Timetable.");
       return;
     }
     await msg.reply(

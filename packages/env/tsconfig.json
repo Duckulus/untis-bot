@@ -1,0 +1,9 @@
+{
+  "extends": "@untis-bot/tsconfig/node.json",
+  "compilerOptions": {
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "exclude": ["dist"]
+}

@@ -1,9 +1,10 @@
 {
-  "name": "tsconfig",
+  "name": "@untis-bot/tsconfig",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js",
   "files": [
-    "base.json"
+    "./base.json",
+    "./node.json",
+    "./next.json"
   ]
 }

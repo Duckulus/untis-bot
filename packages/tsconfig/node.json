@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["dom", "es6", "ESNext", "esnext.asynciterable"],
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noEmit": false,
+    "target": "ESNext",
+    "module": "CommonJS"
+  }
+}
