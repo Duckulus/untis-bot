@@ -4,8 +4,8 @@ import { upsertUser } from "./user";
 import { redisClient } from "../redisClient";
 
 export type UserData = Omit<
-  Omit<Omit<Omit<User, "createdAt">, "subscribed">, "hours">,
-  "minutes"
+  User,
+  "createdAt" | "subscribed" | "hours" | "minutes"
 >;
 
 export const createVerification = async (user: UserData) => {
