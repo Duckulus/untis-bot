@@ -36,7 +36,6 @@ jobs:
           NEXT_PUBLIC_FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
 
       - name: Push Image
-        if: ${{ github.ref == 'refs/heads/main' }}
         run: yarn docker:push
         env:
           DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY }}
