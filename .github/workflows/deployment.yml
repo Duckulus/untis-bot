@@ -37,5 +37,6 @@ jobs:
 
       - name: Push Image
         run: yarn docker:push
+        if: ${{ github.ref == 'refs/heads/master' }}
         env:
           DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY }}
