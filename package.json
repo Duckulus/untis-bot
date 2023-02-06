@@ -16,14 +16,16 @@
     "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md,json}\"",
     "prepare": "husky install",
     "docker:build": "docker compose build",
-    "docker:push": "docker compose push"
+    "docker:push": "docker compose push",
+    "fix": "yarn-audit-fix"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
     "env-cmd": "^10.1.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
-    "prettier": "latest"
+    "prettier": "latest",
+    "yarn-audit-fix": "^9.3.8"
   },
   "engines": {
     "npm": ">=7.0.0",
