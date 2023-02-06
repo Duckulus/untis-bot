@@ -4,7 +4,7 @@ import { Header } from "./Header";
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="absolute inset-0 flex flex-col">
+    <div className="absolute inset-0 flex flex-col text-white">
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
