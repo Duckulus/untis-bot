@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
@@ -8,6 +8,7 @@ interface UserData {
   country: string;
   number: string;
   untis_school: string;
+  custom_school: string;
   untis_username: string;
   untis_password: string;
   untis_eap: string;
@@ -19,11 +20,17 @@ type CountryCode = {
   code: string;
 };
 
+type School = {
+  name: string;
+  eap: string;
+};
+
 const RegisterPage: NextPage = () => {
   const initialValues: UserData = {
     country: "+49",
     number: "",
     untis_school: "",
+    custom_school: "school-id",
     untis_username: "",
     untis_password: "",
     untis_eap: "ajax.webuntis.com",
@@ -32,11 +39,19 @@ const RegisterPage: NextPage = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [countryCodes, setCountryCodes] = useState<CountryCode[]>([]);
+  const [schools, setSchools] = useState<School[]>([]);
+  const ref = useRef<HTMLSelectElement>();
 
   useEffect(() => {
     fetch("/CountryCodes.json").then((resp) => {
       resp.json().then((data) => {
         setCountryCodes(data);
+      });
+    });
+
+    fetch("/schools.json").then((resp) => {
+      resp.json().then((data) => {
+        setSchools(data);
       });
     });
   }, []);
@@ -49,6 +64,10 @@ const RegisterPage: NextPage = () => {
       method: "post",
       body: JSON.stringify({
         ...values,
+        untis_school:
+          values.untis_school == "custom"
+            ? values.custom_school
+            : values.untis_school,
         number:
           values.country +
           (values.number.startsWith("0")
@@ -91,7 +110,25 @@ const RegisterPage: NextPage = () => {
             <div>
               <label>School</label>
               <br />
-              <Field type="text" name="untis_school" />
+              <Field as={"select"} name="untis_school" innerRef={ref}>
+                {schools.map((school, i) => {
+                  return (
+                    <option key={i} value={school.eap}>
+                      {school.name}
+                    </option>
+                  );
+                })}
+                <option value={"custom"}>Custom</option>
+              </Field>
+
+              {ref.current &&
+                ref.current.options[ref.current.selectedIndex].value ==
+                  "custom" && (
+                  <>
+                    <br />
+                    <Field type="text" name="custom_school" />
+                  </>
+                )}
             </div>
             <div>
               <label>Username</label>
