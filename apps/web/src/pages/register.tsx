@@ -22,7 +22,7 @@ type CountryCode = {
 
 type School = {
   name: string;
-  eap: string;
+  school_id: string;
 };
 
 const RegisterPage: NextPage = () => {
@@ -113,7 +113,7 @@ const RegisterPage: NextPage = () => {
               <Field as={"select"} name="untis_school" innerRef={ref}>
                 {schools.map((school, i) => {
                   return (
-                    <option key={i} value={school.eap}>
+                    <option key={i} value={school.school_id}>
                       {school.name}
                     </option>
                   );

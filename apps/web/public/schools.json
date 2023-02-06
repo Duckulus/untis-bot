@@ -1,34 +1,34 @@
 [
   {
     "name": "Friedrich-Rückert-Gymnasium Düsseldorf",
-    "eap": "frg-düsseldorf"
+    "school_id": "frg-düsseldorf"
   },
   {
     "name": "Leibniz-Montessori-Gymnasium Düsseldorf",
-    "eap": "leib-gym-düss"
+    "school_id": "leib-gym-düss"
   },
   {
     "name": "Comenius-Gymnasium Düsseldorf",
-    "eap": "c-gym-duesseldorf"
+    "school_id": "c-gym-duesseldorf"
   },
   {
     "name": "Cecilien-Gymnasium Düsseldorf",
-    "eap": "cecilien-gym"
+    "school_id": "cecilien-gym"
   },
   {
     "name": "Geschwister-Scholl-Gymnasium Düsseldorf",
-    "eap": "gsg-duesseldorf"
+    "school_id": "gsg-duesseldorf"
   },
   {
     "name": "Goethe-Gymnasium Düsseldorf",
-    "eap": "goethe-gym-duesseldorf"
+    "school_id": "goethe-gym-duesseldorf"
   },
   {
     "name": "Gymnasium Gerresheim Düsseldorf",
-    "eap": "gym-gerresheim"
+    "school_id": "gym-gerresheim"
   },
   {
     "name": "Lessing-Gymnasium und BK Düsseldorf",
-    "eap": "lessing-gym-duesseldorf"
+    "school_id": "lessing-gym-duesseldorf"
   }
 ]
