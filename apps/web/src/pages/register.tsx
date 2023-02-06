@@ -29,7 +29,7 @@ const RegisterPage: NextPage = () => {
   const initialValues: UserData = {
     country: "+49",
     number: "",
-    untis_school: "",
+    untis_school: "frg-düsseldorf",
     custom_school: "school-id",
     untis_username: "",
     untis_password: "",
