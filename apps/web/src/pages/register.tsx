@@ -118,17 +118,16 @@ const RegisterPage: NextPage = () => {
                     </option>
                   );
                 })}
-                <option value={"custom"}>Custom</option>
+                {schools.length && <option value={"custom"}>Custom</option>}
               </Field>
 
-              {ref.current &&
-                ref.current.options[ref.current.selectedIndex].value ==
-                  "custom" && (
-                  <>
-                    <br />
-                    <Field type="text" name="custom_school" />
-                  </>
-                )}
+              {ref.current?.options[ref.current.selectedIndex]?.value ==
+                "custom" && (
+                <>
+                  <br />
+                  <Field type="text" name="custom_school" />
+                </>
+              )}
             </div>
             <div>
               <label>Username</label>
