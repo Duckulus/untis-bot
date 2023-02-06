@@ -5,8 +5,14 @@ import Link from "next/link";
 const HomePage: NextPage = () => {
   return (
     <div>
-      <h1>Welcome to Untis Bot</h1>
-      <Link href="/register">Start using Untis Bot Now!</Link>
+      <div className="h-64 grid content-center gap-2">
+        <h1 className="text-6xl text-center">Welcome to Untis Bot</h1>
+        <div className="flex justify-center">
+          <Link href="/register" className="rounded py-2 px-4 bg-neutral-800">
+            <span>Start using Untis Bot Now!</span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
