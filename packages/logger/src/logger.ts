@@ -1,4 +1,5 @@
 import winston from "winston";
+import expressWinston from "express-winston";
 
 const logPrefixer = (loggerType: string) => {
   return winston.format((info) => {
@@ -31,4 +32,16 @@ const loggerTransports = [
 export const logger = winston.createLogger({
   transports: loggerTransports,
   format: loggerFormat("console"),
+});
+
+export const expressLogger = expressWinston.logger({
+  transports: loggerTransports,
+  format: loggerFormat("Express"),
+  meta: false,
+  msg: "{{req.method}}: ({{res.statusCode}}) in {{res.responseTime}}ms: {{req.url}}",
+});
+
+export const prismaLogger = winston.createLogger({
+  transports: loggerTransports,
+  format: loggerFormat("Prisma"),
 });
