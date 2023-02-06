@@ -23,7 +23,11 @@ const VerifyTokenPage: NextPage = () => {
     checkToken(token);
   }, [router, setResult]);
 
-  return <div>{result}</div>;
+  return (
+    <div className="container mx-auto p-2">
+      <p className="text-2xl lg:text-4xl">{result}</p>
+    </div>
+  );
 };
 
 export default VerifyTokenPage;

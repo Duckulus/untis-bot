@@ -10,10 +10,4 @@
   input, select {
     @apply bg-neutral-900;
   }
-
-  /* temporary */
-  a {
-    @apply text-blue-500;
-  }
-
 }
