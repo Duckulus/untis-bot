@@ -9,4 +9,6 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+const transpiledModules = require("next-transpile-modules")(["react-icons"]);
+
+module.exports = transpiledModules(nextConfig);

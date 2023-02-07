@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+
   body {
-    @apply bg-black text-white;
+    @apply bg-black
   }
 
-  input {
+  input, select {
     @apply bg-neutral-900;
-  }
-
-  /* temporary */
-  a {
-    @apply text-blue-500;
   }
 }

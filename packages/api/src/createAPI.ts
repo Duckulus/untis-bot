@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { checkVerification } from "@untis-bot/db";
-import { createVerification, UserData } from "@untis-bot/db";
+import { checkVerification, createVerification, UserData } from "@untis-bot/db";
+import { expressLogger } from "@untis-bot/logger";
 import { verifyNumber } from "@untis-bot/whatsapp";
 import { z } from "zod";
 import { FRONTEND_URL } from "@untis-bot/env";
@@ -22,6 +22,7 @@ export const createApi = () => {
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use(expressLogger);
 
   app.use(
     cors({

@@ -1,21 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import { BACKEND_URL } from "@untis-bot/env";
 
 interface UserData {
+  country: string;
   number: string;
   untis_school: string;
+  custom_school: string;
   untis_username: string;
   untis_password: string;
   untis_eap: string;
 }
 
+type CountryCode = {
+  name: string;
+  dial_code: string;
+  code: string;
+};
+
+type School = {
+  name: string;
+  school_id: string;
+};
+
 const RegisterPage: NextPage = () => {
   const initialValues: UserData = {
+    country: "+49",
     number: "",
-    untis_school: "",
+    untis_school: "frg-düsseldorf",
+    custom_school: "school-id",
     untis_username: "",
     untis_password: "",
     untis_eap: "ajax.webuntis.com",
@@ -23,6 +38,23 @@ const RegisterPage: NextPage = () => {
 
   const router = useRouter();
   const [error, setError] = useState("");
+  const [countryCodes, setCountryCodes] = useState<CountryCode[]>([]);
+  const [schools, setSchools] = useState<School[]>([]);
+  const ref = useRef<HTMLSelectElement>();
+
+  useEffect(() => {
+    fetch("/CountryCodes.json").then((resp) => {
+      resp.json().then((data) => {
+        setCountryCodes(data);
+      });
+    });
+
+    fetch("/schools.json").then((resp) => {
+      resp.json().then((data) => {
+        setSchools(data);
+      });
+    });
+  }, []);
 
   const handleSubmit = async (
     values: UserData,
@@ -30,7 +62,18 @@ const RegisterPage: NextPage = () => {
   ) => {
     const res = await fetch(`${BACKEND_URL}/verify`, {
       method: "post",
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        ...values,
+        untis_school:
+          values.untis_school == "custom"
+            ? values.custom_school
+            : values.untis_school,
+        number:
+          values.country +
+          (values.number.startsWith("0")
+            ? values.number.substring(1)
+            : values.number),
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,12 +96,38 @@ const RegisterPage: NextPage = () => {
             <div>
               <label>Number</label>
               <br />
-              <Field type="tel" name="number" pattern="\+[0-9]{13}" />
+              <Field as="select" name="country">
+                {countryCodes.map((code, i) => {
+                  return (
+                    <option key={i} value={code.dial_code}>
+                      {code.code} {code.dial_code}
+                    </option>
+                  );
+                })}
+              </Field>
+              <Field type="tel" name="number" pattern="^[0-9]*$" />
             </div>
             <div>
               <label>School</label>
               <br />
-              <Field type="text" name="untis_school" />
+              <Field as={"select"} name="untis_school" innerRef={ref}>
+                {schools.map((school, i) => {
+                  return (
+                    <option key={i} value={school.school_id}>
+                      {school.name}
+                    </option>
+                  );
+                })}
+                {schools.length && <option value={"custom"}>Custom</option>}
+              </Field>
+
+              {ref.current?.options[ref.current.selectedIndex]?.value ==
+                "custom" && (
+                <>
+                  <br />
+                  <Field type="text" name="custom_school" />
+                </>
+              )}
             </div>
             <div>
               <label>Username</label>

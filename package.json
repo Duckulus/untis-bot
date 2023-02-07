@@ -8,29 +8,28 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "start": "yarn turbo start",
-    "deploy": "yarn db generate && yarn start",
     "dev": "env-cmd turbo run dev --parallel",
     "lint": "turbo run lint",
-    "prisma:gen": "yarn workspace db prisma db push",
+    "prisma:gen": "yarn workspace @untis-bot/db run prisma db push",
     "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md,json}\"",
     "prepare": "husky install",
     "docker:build": "docker compose build",
-    "docker:push": "docker compose push"
+    "docker:push": "docker compose push",
+    "fix": "yarn-audit-fix"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
     "env-cmd": "^10.1.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
-    "prettier": "latest"
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "^0.2.2",
+    "turbo": "latest",
+    "yarn-audit-fix": "^9.3.8"
   },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
-  },
-  "dependencies": {
-    "turbo": "latest"
   },
   "packageManager": "yarn@1.22.19",
   "license": "MIT"
