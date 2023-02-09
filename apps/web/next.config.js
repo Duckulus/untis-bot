@@ -4,11 +4,10 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  transpilePackages: ["react-icons"],
   experimental: {
     outputFileTracingRoot: path.join(__dirname, "../../"),
   },
 };
 
-const transpiledModules = require("next-transpile-modules")(["react-icons"]);
-
-module.exports = transpiledModules(nextConfig);
+module.exports = nextConfig;
