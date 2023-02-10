@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
 import { BACKEND_URL } from "@untis-bot/env";
+import { Title } from "@/components/meta/Title";
 
 interface UserData {
   country: string;
@@ -89,73 +90,76 @@ const RegisterPage: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <label>Number</label>
-              <br />
-              <Field as="select" name="country">
-                {countryCodes.map((code, i) => {
-                  return (
-                    <option key={i} value={code.dial_code}>
-                      {code.code} {code.dial_code}
-                    </option>
-                  );
-                })}
-              </Field>
-              <Field type="tel" name="number" pattern="^[0-9]*$" />
-            </div>
-            <div>
-              <label>School</label>
-              <br />
-              <Field as={"select"} name="untis_school" innerRef={ref}>
-                {schools.map((school, i) => {
-                  return (
-                    <option key={i} value={school.school_id}>
-                      {school.name}
-                    </option>
-                  );
-                })}
-                {schools.length && <option value={"custom"}>Custom</option>}
-              </Field>
+    <>
+      <Title>Register | Jamal</Title>
+      <div className="flex justify-center">
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          {({ isSubmitting }) => (
+            <Form>
+              <div>
+                <label>Number</label>
+                <br />
+                <Field as="select" name="country">
+                  {countryCodes.map((code, i) => {
+                    return (
+                      <option key={i} value={code.dial_code}>
+                        {code.code} {code.dial_code}
+                      </option>
+                    );
+                  })}
+                </Field>
+                <Field type="tel" name="number" pattern="^[0-9]*$" />
+              </div>
+              <div>
+                <label>School</label>
+                <br />
+                <Field as={"select"} name="untis_school" innerRef={ref}>
+                  {schools.map((school, i) => {
+                    return (
+                      <option key={i} value={school.school_id}>
+                        {school.name}
+                      </option>
+                    );
+                  })}
+                  {schools.length && <option value={"custom"}>Custom</option>}
+                </Field>
 
-              {ref.current?.options[ref.current.selectedIndex]?.value ==
-                "custom" && (
-                <>
-                  <br />
-                  <Field type="text" name="custom_school" />
-                </>
-              )}
-            </div>
-            <div>
-              <label>Username</label>
-              <br />
-              <Field type="text" name="untis_username" />
-            </div>
-            <div>
-              <label>Password</label>
-              <br />
-              <Field type="password" name="untis_password" />
-            </div>
-            <div>
-              <label>EAP</label>
-              <br />
-              <Field type="text" name="untis_eap" />
-            </div>
-            {error && <p className="text-red-500">{error}</p>}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="text-blue-500"
-            >
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+                {ref.current?.options[ref.current.selectedIndex]?.value ==
+                  "custom" && (
+                  <>
+                    <br />
+                    <Field type="text" name="custom_school" />
+                  </>
+                )}
+              </div>
+              <div>
+                <label>Username</label>
+                <br />
+                <Field type="text" name="untis_username" />
+              </div>
+              <div>
+                <label>Password</label>
+                <br />
+                <Field type="password" name="untis_password" />
+              </div>
+              <div>
+                <label>EAP</label>
+                <br />
+                <Field type="text" name="untis_eap" />
+              </div>
+              {error && <p className="text-red-500">{error}</p>}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="text-blue-500"
+              >
+                Submit
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </>
   );
 };
 
