@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { BACKEND_URL } from "@untis-bot/env";
+import { Title } from "@/components/meta/Title";
 
 const VerifyTokenPage: NextPage = () => {
   const router = useRouter();
@@ -24,9 +25,12 @@ const VerifyTokenPage: NextPage = () => {
   }, [router, setResult]);
 
   return (
-    <div className="container mx-auto p-2">
-      <p className="text-2xl lg:text-4xl">{result}</p>
-    </div>
+    <>
+      <Title>Verification | Jamal</Title>
+      <div className="container mx-auto p-2">
+        <p className="text-2xl lg:text-4xl">{result}</p>
+      </div>
+    </>
   );
 };
 

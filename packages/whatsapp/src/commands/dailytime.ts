@@ -37,7 +37,8 @@ Command.create({
         hours: hours,
         minutes: minutes,
       });
-      await scheduleDailyTask(whatsAppClient, user, hours, minutes);
+
+      scheduleDailyTask(whatsAppClient, user, hours, minutes);
       await msg.reply("Daily time changed");
     }
   },
