@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@untis-bot/db": "*",
-    "@untis-bot/logger": "*",
     "@untis-bot/env": "*",
+    "@untis-bot/logger": "*",
     "node-cron": "^3.0.2",
     "qrcode-terminal": "^0.12.0",
     "webuntis": "^2.0.3",
-    "whatsapp-web.js": "^1.19.3"
+    "whatsapp-web.js": "^1.19.4"
   }
 }
