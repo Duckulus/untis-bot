@@ -10,7 +10,7 @@
     "build": "turbo run build",
     "dev": "env-cmd turbo run dev --parallel",
     "lint": "turbo run lint",
-    "prisma:gen": "yarn workspace @untis-bot/db run prisma db push",
+    "prisma:gen": "env-cmd yarn workspace @untis-bot/db run prisma db push",
     "format": "prettier --write \"{packages,apps}/**/*.{ts,tsx,md,json}\"",
     "prepare": "husky install",
     "docker:build": "docker compose build",
