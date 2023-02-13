@@ -92,14 +92,19 @@ const RegisterPage: NextPage = () => {
   return (
     <>
       <Title>Register | Jamal</Title>
-      <div className="flex justify-center">
+      <div className="grid content-center justify-center gap-y-8">
+        <h1 className="text-6xl text-tea">Register</h1>
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
             <Form>
               <div>
-                <label>Number</label>
+                <label className="text-lg">Number</label>
                 <br />
-                <Field as="select" name="country">
+                <Field
+                  as="select"
+                  className="px-2 py-1 rounded-l text-lg"
+                  name="country"
+                >
                   {countryCodes.map((code, i) => {
                     return (
                       <option key={i} value={code.dial_code}>
@@ -108,12 +113,22 @@ const RegisterPage: NextPage = () => {
                     );
                   })}
                 </Field>
-                <Field type="tel" name="number" pattern="^[0-9]*$" />
+                <Field
+                  type="tel"
+                  name="number"
+                  className="px-2 py-1 rounded-r"
+                  pattern="^[0-9]*$"
+                />
               </div>
               <div>
-                <label>School</label>
+                <label className="text-lg">School</label>
                 <br />
-                <Field as={"select"} name="untis_school" innerRef={ref}>
+                <Field
+                  as={"select"}
+                  className="px-2 py-1 rounded"
+                  name="untis_school"
+                  innerRef={ref}
+                >
                   {schools.map((school, i) => {
                     return (
                       <option key={i} value={school.school_id}>
@@ -128,30 +143,46 @@ const RegisterPage: NextPage = () => {
                   "custom" && (
                   <>
                     <br />
-                    <Field type="text" name="custom_school" />
+                    <Field
+                      type="text"
+                      className="px-2 py-1 rounded"
+                      name="custom_school"
+                    />
                   </>
                 )}
               </div>
               <div>
-                <label>Username</label>
+                <label className="text-lg">Username</label>
                 <br />
-                <Field type="text" name="untis_username" />
+                <Field
+                  type="text"
+                  className="px-2 py-1 rounded"
+                  name="untis_username"
+                />
               </div>
               <div>
-                <label>Password</label>
+                <label className="text-lg">Password</label>
                 <br />
-                <Field type="password" name="untis_password" />
+                <Field
+                  type="password"
+                  className="px-2 py-1 rounded"
+                  name="untis_password"
+                />
               </div>
               <div>
-                <label>EAP</label>
+                <label className="text-lg">EAP</label>
                 <br />
-                <Field type="text" name="untis_eap" />
+                <Field
+                  type="text"
+                  className="px-2 py-1 rounded"
+                  name="untis_eap"
+                />
               </div>
-              {error && <p className="text-red-500">{error}</p>}
+              {error && <p className="text-red-500 text-lg">{error}</p>}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="text-blue-500"
+                className="px-2 py-1 bg-olivine text-darkpurple rounded my-4"
               >
                 Submit
               </button>
