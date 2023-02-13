@@ -6,7 +6,7 @@ export const Header: React.FC = () => {
     <header className="bg-neutral-800 p-2">
       <div className="container mx-auto flex justify-between">
         <span>
-          <Link href="/">Untis Bot</Link>
+          <Link href="/">Jamal</Link>
         </span>
         <nav>
           <ul className="flex">

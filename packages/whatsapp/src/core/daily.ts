@@ -5,6 +5,7 @@ import { COMMAND_PREFIX } from "./command";
 import { Lesson, WebUntis } from "webuntis";
 import { parseTimetable } from "../utils/timetable";
 import { logger } from "@untis-bot/logger";
+import { FRONTEND_URL } from "@untis-bot/env";
 
 const tasks: Map<string, cron.ScheduledTask> = new Map();
 
@@ -30,7 +31,7 @@ export const scheduleDailyTask = (
     user.number,
     cron.schedule(`${minutes} ${hours} * * 1-5`, async () => {
       logger.info("Running daily job for " + user.number);
-      const contact = await client.getNumberId(user.number.substr(1));
+      const contact = await client.getNumberId(user.number.substring(1));
 
       if (!user.subscribed || !contact) return;
 
@@ -45,7 +46,7 @@ export const scheduleDailyTask = (
       ) {
         await client.sendMessage(
           contact._serialized,
-          `You are subscribed but there are no credentials associated with your account. Use ${COMMAND_PREFIX}unsubscribe to unsubscribe or ${COMMAND_PREFIX}untis to enter your credentials.`
+          `You are subscribed but there are no credentials associated with your account. Use ${COMMAND_PREFIX}unsubscribe to unsubscribe or consinder logging in at ${FRONTEND_URL}`
         );
         return;
       }

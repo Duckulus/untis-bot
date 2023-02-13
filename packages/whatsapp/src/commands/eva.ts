@@ -1,6 +1,7 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
 import { Lesson, WebUntis } from "webuntis";
 import { getDate, parseTimetable } from "../utils/timetable";
+import { FRONTEND_URL } from "@untis-bot/env";
 
 Command.create({
   name: "eva",
@@ -33,7 +34,7 @@ Command.create({
       !user
     ) {
       await msg.reply(
-        `Missing information. Use ${COMMAND_PREFIX}untis to enter your credentials.`
+        `Missing information. Consinder logging in at ${FRONTEND_URL}`
       );
       return;
     }

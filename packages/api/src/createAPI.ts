@@ -54,6 +54,7 @@ export const createApi = () => {
       await untis.logout();
     } catch {
       res.status(400).json({ error: "Invalid user credentials" });
+      return;
     }
 
     const token = await createVerification(user);
