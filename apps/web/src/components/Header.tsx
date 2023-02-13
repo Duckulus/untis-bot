@@ -5,7 +5,7 @@ export const Header: React.FC = () => {
   return (
     <header className="p-4">
       <div className="container mx-auto">
-        <div className="bg-violet px-4 py-2 rounded flex justify-between shadow-black shadow">
+        <div className="flex justify-between rounded bg-violet px-4 py-2 shadow shadow-black">
           <span>
             <Link href="/">Jamal</Link>
           </span>

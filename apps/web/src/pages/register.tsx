@@ -102,7 +102,7 @@ const RegisterPage: NextPage = () => {
                 <br />
                 <Field
                   as="select"
-                  className="px-2 py-1 rounded-l text-lg"
+                  className="rounded-l px-2 py-1 text-lg"
                   name="country"
                 >
                   {countryCodes.map((code, i) => {
@@ -116,7 +116,7 @@ const RegisterPage: NextPage = () => {
                 <Field
                   type="tel"
                   name="number"
-                  className="px-2 py-1 rounded-r"
+                  className="rounded-r px-2 py-1"
                   pattern="^[0-9]*$"
                 />
               </div>
@@ -125,7 +125,7 @@ const RegisterPage: NextPage = () => {
                 <br />
                 <Field
                   as={"select"}
-                  className="px-2 py-1 rounded"
+                  className="rounded px-2 py-1"
                   name="untis_school"
                   innerRef={ref}
                 >
@@ -145,7 +145,7 @@ const RegisterPage: NextPage = () => {
                     <br />
                     <Field
                       type="text"
-                      className="px-2 py-1 rounded"
+                      className="rounded px-2 py-1"
                       name="custom_school"
                     />
                   </>
@@ -156,7 +156,7 @@ const RegisterPage: NextPage = () => {
                 <br />
                 <Field
                   type="text"
-                  className="px-2 py-1 rounded"
+                  className="rounded px-2 py-1"
                   name="untis_username"
                 />
               </div>
@@ -165,7 +165,7 @@ const RegisterPage: NextPage = () => {
                 <br />
                 <Field
                   type="password"
-                  className="px-2 py-1 rounded"
+                  className="rounded px-2 py-1"
                   name="untis_password"
                 />
               </div>
@@ -174,15 +174,15 @@ const RegisterPage: NextPage = () => {
                 <br />
                 <Field
                   type="text"
-                  className="px-2 py-1 rounded"
+                  className="rounded px-2 py-1"
                   name="untis_eap"
                 />
               </div>
-              {error && <p className="text-red-500 text-lg">{error}</p>}
+              {error && <p className="text-lg text-red-500">{error}</p>}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-2 py-1 bg-olivine text-darkpurple rounded my-4"
+                className="my-4 rounded bg-olivine px-2 py-1 text-darkpurple"
               >
                 Submit
               </button>

@@ -5,7 +5,7 @@ import { VscGithub } from "react-icons/vsc";
 export const Footer: React.FC = () => {
   return (
     <footer className="px-2">
-      <div className="container mx-auto bg-violet rounded-t p-4 flex justify-between">
+      <div className="container mx-auto flex justify-between rounded-t bg-violet p-4">
         <span>Jamal 2023</span>
         <ul className="flex gap-x-4">
           <li>
