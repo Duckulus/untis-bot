@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/whatsapp",
+  "name": "@jamal/whatsapp",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -10,13 +10,13 @@
   "devDependencies": {
     "@types/node-cron": "^3.0.7",
     "@types/qrcode-terminal": "^0.12.0",
-    "@untis-bot/tsconfig": "*",
+    "@jamal/tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@untis-bot/db": "*",
-    "@untis-bot/env": "*",
-    "@untis-bot/logger": "*",
+    "@jamal/db": "*",
+    "@jamal/env": "*",
+    "@jamal/logger": "*",
     "node-cron": "^3.0.2",
     "qrcode-terminal": "^0.12.0",
     "webuntis": "^2.0.3",

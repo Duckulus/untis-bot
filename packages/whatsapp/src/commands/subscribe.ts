@@ -1,5 +1,5 @@
 import { Command } from "../core/command";
-import { setSubscribed } from "@untis-bot/db";
+import { setSubscribed } from "@jamal/db";
 
 Command.create({
   name: "subscribe",

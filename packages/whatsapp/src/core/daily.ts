@@ -1,11 +1,11 @@
 import cron from "node-cron";
-import { getAllUsers, User } from "@untis-bot/db";
+import { getAllUsers, User } from "@jamal/db";
 import { Client } from "whatsapp-web.js";
 import { COMMAND_PREFIX } from "./command";
 import { Lesson, WebUntis } from "webuntis";
 import { parseTimetable } from "../utils/timetable";
-import { logger } from "@untis-bot/logger";
-import { FRONTEND_URL } from "@untis-bot/env";
+import { logger } from "@jamal/logger";
+import { FRONTEND_URL } from "@jamal/env";
 
 const tasks: Map<string, cron.ScheduledTask> = new Map();
 

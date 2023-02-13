@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { BACKEND_URL } from "@untis-bot/env";
+import { BACKEND_URL } from "@jamal/env";
 import { Title } from "@/components/meta/Title";
 
 const VerifyTokenPage: NextPage = () => {

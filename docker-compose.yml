@@ -1,8 +1,8 @@
 version: "3"
 services:
   server:
-    image: ${DOCKER_REGISTRY_URL}/untis-bot/server
-    container_name: untis-bot-server
+    image: ${DOCKER_REGISTRY_URL}/jamal/server
+    container_name: jamal-server
     platform: ${DOCKER_PLATFORM}
     build:
       context: .
@@ -18,8 +18,8 @@ services:
         max_attempts: 10
 
   web:
-    image: ${DOCKER_REGISTRY_URL}/untis-bot/web
-    container_name: untis-bot-web
+    image: ${DOCKER_REGISTRY_URL}/jamal/web
+    container_name: jamal-web
     platform: ${DOCKER_PLATFORM}
     build:
       context: .
@@ -34,14 +34,14 @@ services:
         max_attempts: 10
 
   redis:
-    container_name: untis-bot-redis
+    container_name: jamal-redis
     image: redis:alpine
     ports:
       - "6379:6379"
 
   postgres:
     image: postgres:alpine
-    container_name: untis-bot-postgres
+    container_name: jamal-postgres
     ports:
       - "5432:5432"
     restart: always

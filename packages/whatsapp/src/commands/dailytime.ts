@@ -1,5 +1,5 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
-import { upsertUser } from "@untis-bot/db";
+import { upsertUser } from "@jamal/db";
 import { scheduleDailyTask } from "../core/daily";
 import { whatsAppClient } from "../core/client";
 

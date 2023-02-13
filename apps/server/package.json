@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/server",
+  "name": "@jamal/server",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -10,9 +10,9 @@
     "dev": "nodemon --exec yarn run build:start"
   },
   "dependencies": {
-    "@untis-bot/tsconfig": "*",
-    "@untis-bot/whatsapp": "*",
-    "@untis-bot/api": "*"
+    "@jamal/tsconfig": "*",
+    "@jamal/whatsapp": "*",
+    "@jamal/api": "*"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

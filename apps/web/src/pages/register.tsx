@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { NextPage } from "next";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useRouter } from "next/router";
-import { BACKEND_URL } from "@untis-bot/env";
+import { BACKEND_URL } from "@jamal/env";
 import { Title } from "@/components/meta/Title";
 
 interface UserData {

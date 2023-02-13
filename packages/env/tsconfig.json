@@ -1,5 +1,5 @@
 {
-  "extends": "@untis-bot/tsconfig/node.json",
+  "extends": "@jamal/tsconfig/node.json",
   "compilerOptions": {
     "declaration": true,
     "rootDir": "src",

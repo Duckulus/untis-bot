@@ -1,4 +1,4 @@
-import { prismaLogger } from "@untis-bot/logger";
+import { prismaLogger } from "@jamal/logger";
 import { PrismaClient } from "@prisma/client";
 
 export const prisma = new PrismaClient({

@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
               className="flex gap-x-2"
               target="_blank"
               rel="noreferrer"
-              href="https://github.com/frghackers/untis-bot"
+              href="https://github.com/frghackers/jamal"
             >
               <span>GitHub</span>
               <VscGithub size={24} />

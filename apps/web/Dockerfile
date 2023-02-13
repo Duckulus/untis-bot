@@ -4,7 +4,7 @@ RUN apk add libc6-compat --no-cache
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune --scope=@untis-bot/web --docker
+RUN turbo prune --scope=@jamal/web --docker
 
 FROM node:16-alpine as installer
 RUN apk update 
@@ -22,7 +22,7 @@ ARG NEXT_PUBLIC_FRONTEND_URL
 
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
-RUN yarn turbo run build --filter=@untis-bot/web...
+RUN yarn turbo run build --filter=@jamal/web...
 
 FROM node:16-alpine AS runner
 WORKDIR /app

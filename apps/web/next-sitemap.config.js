@@ -1,4 +1,4 @@
-const { FRONTEND_URL } = require("@untis-bot/env");
+const { FRONTEND_URL } = require("@jamal/env");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
