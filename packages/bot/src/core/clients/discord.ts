@@ -1,4 +1,10 @@
-import { ActivityType, Client, GatewayIntentBits, Message, Partials } from "discord.js";
+import {
+  ActivityType,
+  Client,
+  GatewayIntentBits,
+  Message,
+  Partials,
+} from "discord.js";
 import { logger } from "@jamal/logger";
 import { BotMessage, Command } from "../command";
 import { COMMAND_PREFIX } from "../../utils/constants";
