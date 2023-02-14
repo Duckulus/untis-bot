@@ -1,9 +1,14 @@
-import { whatsAppClient, startDailyJob } from "@jamal/bot";
+import { whatsAppClient, discordClient, startDailyJob } from "@jamal/bot";
+import { DISCORD_BOT_TOKEN } from "@jamal/env";
 import { createApi } from "@jamal/api";
 
-const startBot = () => {
+const startWhatsappBot = () => {
   whatsAppClient.initialize();
   startDailyJob(whatsAppClient);
+};
+
+const startDiscordBot = () => {
+  discordClient.login(DISCORD_BOT_TOKEN);
 };
 
 const startApi = () => {
@@ -11,5 +16,6 @@ const startApi = () => {
   app.listen(4000, () => console.log("Listening on port 4000"));
 };
 
-startBot();
+startWhatsappBot();
+startDiscordBot();
 startApi();

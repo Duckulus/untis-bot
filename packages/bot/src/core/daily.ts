@@ -1,7 +1,7 @@
 import cron from "node-cron";
 import { getAllUsers, User } from "@jamal/db";
 import { Client } from "whatsapp-web.js";
-import { COMMAND_PREFIX } from "./command";
+import { COMMAND_PREFIX } from "../utils/constants";
 import { Lesson, WebUntis } from "webuntis";
 import { parseTimetable } from "../utils/timetable";
 import { logger } from "@jamal/logger";

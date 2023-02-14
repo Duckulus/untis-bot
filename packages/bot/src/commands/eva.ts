@@ -1,7 +1,8 @@
-import { Command, COMMAND_PREFIX } from "../core/command";
+import { Command } from "../core/command";
 import { Lesson, WebUntis } from "webuntis";
 import { getDate, parseTimetable } from "../utils/timetable";
 import { FRONTEND_URL } from "@jamal/env";
+import { COMMAND_PREFIX } from "../utils/constants";
 
 Command.create({
   name: "eva",

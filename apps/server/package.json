@@ -12,7 +12,8 @@
   "dependencies": {
     "@jamal/tsconfig": "*",
     "@jamal/bot": "*",
-    "@jamal/api": "*"
+    "@jamal/api": "*",
+    "@jamal/env": "*"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
