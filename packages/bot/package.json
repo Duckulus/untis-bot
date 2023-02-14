@@ -8,15 +8,16 @@
     "build": "tsc -b"
   },
   "devDependencies": {
+    "@jamal/tsconfig": "*",
     "@types/node-cron": "^3.0.7",
     "@types/qrcode-terminal": "^0.12.0",
-    "@jamal/tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@jamal/db": "*",
     "@jamal/env": "*",
     "@jamal/logger": "*",
+    "discord.js": "^14.7.1",
     "node-cron": "^3.0.2",
     "qrcode-terminal": "^0.12.0",
     "webuntis": "^2.0.3",

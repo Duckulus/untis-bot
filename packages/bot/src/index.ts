@@ -1,3 +1,3 @@
-export * from "./core/clients/whatsapp";
+export * from "./core/clients";
 export * from "./verification/verify";
 export * from "./core/daily";

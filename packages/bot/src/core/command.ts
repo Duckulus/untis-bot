@@ -2,8 +2,7 @@ import fs from "fs";
 import { logger } from "@jamal/logger";
 import path from "path";
 import { User } from "@jamal/db";
-
-export const COMMAND_PREFIX = ";";
+import { COMMAND_PREFIX } from "../utils/constants";
 
 export abstract class BotMessage {
   content: string;
