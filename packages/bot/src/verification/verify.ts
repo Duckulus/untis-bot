@@ -1,4 +1,4 @@
-import { whatsAppClient } from "../core/client";
+import { whatsAppClient } from "../core/clients/whatsapp";
 import { FRONTEND_URL } from "@jamal/env";
 
 export const verifyNumber = async (

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { checkVerification, createVerification, UserData } from "@jamal/db";
 import { expressLogger } from "@jamal/logger";
-import { verifyNumber } from "@jamal/whatsapp";
+import { verifyNumber } from "@jamal/bot";
 import { z } from "zod";
 import { FRONTEND_URL } from "@jamal/env";
 import { WebUntis } from "webuntis";

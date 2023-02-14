@@ -1,10 +1,15 @@
 import fs from "fs";
-import { Message } from "whatsapp-web.js";
 import { logger } from "@jamal/logger";
 import path from "path";
-import { getUser, User } from "@jamal/db";
+import { User } from "@jamal/db";
 
 export const COMMAND_PREFIX = ";";
+
+export abstract class BotMessage {
+  content: string;
+  abstract reply(content: string): Promise<void>;
+  abstract getUser(): Promise<User | undefined>;
+}
 
 export class Command {
   name: string;
@@ -14,7 +19,11 @@ export class Command {
   examples?: string[];
   tags?: string[];
 
-  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
+  execute: (
+    msg: BotMessage,
+    args: string[],
+    user?: User
+  ) => void | Promise<void>;
 
   static commands: Command[] = [];
 
@@ -65,17 +74,15 @@ export class Command {
     await Command.addCommandsRecursive(`${__dirname}/../commands`, "");
   };
 
-  static handleMessage = async (message: Message) => {
-    let content = message.body;
+  static handleMessage = async (message: BotMessage) => {
+    let content = message.content;
 
     if (!content.toLocaleLowerCase().startsWith(COMMAND_PREFIX)) {
       return;
     }
 
-    const contact = await message.getContact();
-    const user = await getUser(`+${contact.number}`);
-
-    content = message.body.slice(COMMAND_PREFIX.length);
+    content = content.slice(COMMAND_PREFIX.length);
+    const user = await message.getUser();
     const args = content.split(" ");
     const commandName = args.shift()?.toLocaleLowerCase();
     if (!commandName) {
@@ -90,7 +97,7 @@ export class Command {
         logger.info(`Executing Command ${command.name} with args [${args}]`);
 
         try {
-          await command.execute(message, args, user ?? undefined);
+          await command.execute(message, args, user);
         } catch (e) {
           logger.error(e);
           await message.reply(
@@ -110,5 +117,9 @@ export interface CommandSettings {
   usage?: string;
   tags?: string[];
   examples?: string[];
-  execute: (msg: Message, args: string[], user?: User) => void | Promise<void>;
+  execute: (
+    msg: BotMessage,
+    args: string[],
+    user?: User
+  ) => void | Promise<void>;
 }

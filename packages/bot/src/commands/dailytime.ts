@@ -1,7 +1,7 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
 import { upsertUser } from "@jamal/db";
 import { scheduleDailyTask } from "../core/daily";
-import { whatsAppClient } from "../core/client";
+import { whatsAppClient } from "../core/clients/whatsapp";
 
 Command.create({
   name: "dailytime",

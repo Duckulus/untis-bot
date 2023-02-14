@@ -1,9 +1,10 @@
 import qrcode from "qrcode-terminal";
 import { Client, Message, LocalAuth } from "whatsapp-web.js";
-import { Command } from "./command";
+import { BotMessage, Command } from "../command";
 import { logger } from "@jamal/logger";
+import { getUser } from "@jamal/db";
 
-const createClient = () => {
+const createWhatsappClient = () => {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -27,10 +28,32 @@ const createClient = () => {
   });
 
   client.on("message_create", async (message: Message) => {
-    await Command.handleMessage(message);
+    const botMsg = new WhatsAppMessage(message);
+    await Command.handleMessage(botMsg);
   });
 
   return client;
 };
 
-export const whatsAppClient = createClient();
+export class WhatsAppMessage extends BotMessage {
+  message: Message;
+
+  constructor(message: Message) {
+    super();
+    this.message = message;
+    this.content = message.body;
+  }
+
+  async reply(content: string) {
+    this.message.reply(content);
+  }
+
+  async getUser() {
+    const contact = await this.message.getContact();
+    const user = await getUser(`+${contact.number}`);
+
+    return user ?? undefined;
+  }
+}
+
+export const whatsAppClient = createWhatsappClient();

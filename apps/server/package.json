@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@jamal/tsconfig": "*",
-    "@jamal/whatsapp": "*",
+    "@jamal/bot": "*",
     "@jamal/api": "*"
   },
   "devDependencies": {

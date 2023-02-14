@@ -1,4 +1,4 @@
-import { whatsAppClient, startDailyJob } from "@jamal/whatsapp";
+import { whatsAppClient, startDailyJob } from "@jamal/bot";
 import { createApi } from "@jamal/api";
 
 const startBot = () => {
