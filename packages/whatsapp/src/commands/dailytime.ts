@@ -25,9 +25,9 @@ Command.create({
         isNaN(hours) ||
         isNaN(minutes) ||
         hours < 0 ||
-        hours > 24 ||
+        hours > 23 ||
         minutes < 0 ||
-        minutes > 60
+        minutes > 59
       ) {
         await msg.reply("Invalid time String. Format: hours:minutes");
         return;
