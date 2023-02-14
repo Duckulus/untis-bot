@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
-import { checkVerification, createVerification, UserData } from "@untis-bot/db";
-import { expressLogger } from "@untis-bot/logger";
-import { verifyNumber } from "@untis-bot/whatsapp";
+import { checkVerification, createVerification, UserData } from "@jamal/db";
+import { expressLogger } from "@jamal/logger";
+import { verifyNumber } from "@jamal/whatsapp";
 import { z } from "zod";
-import { FRONTEND_URL } from "@untis-bot/env";
+import { FRONTEND_URL } from "@jamal/env";
 import { WebUntis } from "webuntis";
 
 export type VerifyResponse = { error?: string };

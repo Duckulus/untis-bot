@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-
   body {
-    @apply bg-black
+    @apply bg-darkpurple text-tangerine;
   }
 
   input, select {
-    @apply bg-neutral-900;
+    @apply bg-violet;
   }
 }

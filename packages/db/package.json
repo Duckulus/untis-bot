@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/db",
+  "name": "@jamal/db",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -9,11 +9,11 @@
   },
   "devDependencies": {
     "typescript": "^4.7.4",
-    "@untis-bot/tsconfig": "*"
+    "@jamal/tsconfig": "*"
   },
   "dependencies": {
     "@prisma/client": "^4.9.0",
-    "@untis-bot/env": "*",
+    "@jamal/env": "*",
     "@types/uuid": "^9.0.0",
     "ioredis": "^5.3.0",
     "prisma": "^4.9.0",

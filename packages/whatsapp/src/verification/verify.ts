@@ -1,5 +1,5 @@
 import { whatsAppClient } from "../core/client";
-import { FRONTEND_URL } from "@untis-bot/env";
+import { FRONTEND_URL } from "@jamal/env";
 
 export const verifyNumber = async (
   phoneNumber: string,

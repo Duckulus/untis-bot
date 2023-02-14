@@ -3,22 +3,20 @@ import React from "react";
 
 export const Header: React.FC = () => {
   return (
-    <header className="bg-neutral-800 p-2">
-      <div className="container mx-auto flex justify-between">
-        <span>
-          <Link href="/">Jamal</Link>
-        </span>
-        <nav>
-          <ul className="flex">
-            <li>
-              <Link href="/register">Register</Link>
-            </li>
-            <div className="w-4" />
-            <li>
-              <Link href="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
+    <header className="p-4">
+      <div className="container mx-auto">
+        <div className="flex justify-between rounded bg-violet px-4 py-2 shadow shadow-black">
+          <span>
+            <Link href="/">Jamal</Link>
+          </span>
+          <nav>
+            <ul className="flex">
+              <li>
+                <Link href="/register">Register</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );

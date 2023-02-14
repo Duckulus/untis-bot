@@ -5,7 +5,7 @@ WORKDIR /app/
 RUN yarn global add turbo
 
 COPY . .
-RUN turbo prune --scope=@untis-bot/server --docker
+RUN turbo prune --scope=@jamal/server --docker
 
 FROM node:16-slim as installer
 RUN apt-get update
@@ -21,7 +21,7 @@ RUN yarn install
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
 
-RUN yarn turbo run build --filter=@untis-bot/server...
+RUN yarn turbo run build --filter=@jamal/server...
 
 FROM node:16-slim as runner
 RUN apt-get update
@@ -50,4 +50,4 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
 
 EXPOSE 4000
 
-CMD yarn workspace @untis-bot/server run start
+CMD yarn workspace @jamal/server run start

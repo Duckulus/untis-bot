@@ -1,7 +1,7 @@
 import qrcode from "qrcode-terminal";
 import { Client, Message, LocalAuth } from "whatsapp-web.js";
 import { Command } from "./command";
-import { logger } from "@untis-bot/logger";
+import { logger } from "@jamal/logger";
 
 const createClient = () => {
   const client = new Client({

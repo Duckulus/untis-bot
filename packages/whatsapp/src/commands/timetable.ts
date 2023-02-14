@@ -1,7 +1,7 @@
 import { Command, COMMAND_PREFIX } from "../core/command";
 import { Lesson, WebUntis } from "webuntis";
 import { getDate, parseTimetable } from "../utils/timetable";
-import { FRONTEND_URL } from "@untis-bot/env";
+import { FRONTEND_URL } from "@jamal/env";
 
 Command.create({
   name: "timetable",

@@ -6,7 +6,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "extends": "@untis-bot/tsconfig/next.json",
+  "extends": "@jamal/tsconfig/next.json",
   "include": ["./**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

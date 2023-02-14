@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/env",
+  "name": "@jamal/env",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -9,6 +9,6 @@
   },
   "devDependencies": {
     "typescript": "^4.7.4",
-    "@untis-bot/tsconfig": "*"
+    "@jamal/tsconfig": "*"
   }
 }

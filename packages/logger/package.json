@@ -1,5 +1,5 @@
 {
-  "name": "@untis-bot/logger",
+  "name": "@jamal/logger",
   "version": "0.0.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "build": "tsc -b"
   },
   "devDependencies": {
-    "@untis-bot/tsconfig": "*",
+    "@jamal/tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {

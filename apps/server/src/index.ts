@@ -1,5 +1,5 @@
-import { whatsAppClient, startDailyJob } from "@untis-bot/whatsapp";
-import { createApi } from "@untis-bot/api";
+import { whatsAppClient, startDailyJob } from "@jamal/whatsapp";
+import { createApi } from "@jamal/api";
 
 const startBot = () => {
   whatsAppClient.initialize();
