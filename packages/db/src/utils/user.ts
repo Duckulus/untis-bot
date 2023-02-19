@@ -1,22 +1,56 @@
-import { User } from "@prisma/client";
 import { prisma } from "../prismaClient";
+import { Untis, User } from "@prisma/client";
 
-export const getUser = async (number: string) => {
+export const getUserByNumber = async (number: string) => {
   return await prisma.user.findUnique({
     where: {
-      number,
+      whatsappUserNumber: number,
+    },
+    include: {
+      discordUser: true,
+      whatsappUser: true,
+      untis: true,
+    },
+  });
+};
+
+export const getUntis = async (id: string) => {
+  return await prisma.untis.findMany({
+    where: {
+      User: {
+        every: {
+          id: id,
+        },
+      },
+    },
+  });
+};
+
+export const getUserByDiscordId = async (id: string) => {
+  return await prisma.user.findUnique({
+    where: {
+      discordUserId: id,
+    },
+    include: {
+      discordUser: true,
+      whatsappUser: true,
+      untis: true,
     },
   });
 };
 
 export const getAllUsers = async () => {
-  return await prisma.user.findMany();
+  return await prisma.user.findMany({
+    include: {
+      untis: true,
+    },
+  });
 };
 
-export const setSubscribed = async (number: string, subscribed: boolean) => {
+export const setSubscribed = async (id: string, subscribed: boolean) => {
   await prisma.user.update({
     where: {
-      number,
+      id: id,
     },
     data: {
       subscribed,
@@ -24,16 +58,63 @@ export const setSubscribed = async (number: string, subscribed: boolean) => {
   });
 };
 
+export const createUserWithWhatsapp = async (number: string) => {
+  return await prisma.user.create({
+    data: {
+      whatsappUser: {
+        create: {
+          number: number,
+        },
+      },
+    },
+    include: {
+      whatsappUser: true,
+      untis: true,
+    },
+  });
+};
+
+export const createUserWithDiscord = async (userid: string) => {
+  return await prisma.user.create({
+    data: {
+      discordUser: {
+        create: {
+          userId: userid,
+          oauthToken: "",
+        },
+      },
+    },
+    include: {
+      discordUser: true,
+      untis: true,
+    },
+  });
+};
+
+export const addUntisToUser = async (number: string, untis: Partial<Untis>) => {
+  await prisma.user.update({
+    where: {
+      whatsappUserNumber: number,
+    },
+    data: {
+      untis: {
+        create: untis,
+      },
+    },
+  });
+};
+
 export const upsertUser = async (user: Partial<User>) => {
-  if (!user.number) return;
+  if (!user.id) return;
   await prisma.user.upsert({
+    where: {
+      id: user.id,
+    },
     create: {
-      number: user.number,
       ...user,
     },
-    update: user,
-    where: {
-      number: user.number,
+    update: {
+      ...user,
     },
   });
 };

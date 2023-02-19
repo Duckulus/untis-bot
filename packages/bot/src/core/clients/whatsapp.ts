@@ -2,7 +2,7 @@ import qrcode from "qrcode-terminal";
 import { Client, Message, LocalAuth } from "whatsapp-web.js";
 import { BotMessage, Command } from "../command";
 import { logger } from "@jamal/logger";
-import { getUser } from "@jamal/db";
+import { getUserByNumber } from "@jamal/db";
 
 const createWhatsappClient = () => {
   const client = new Client({
@@ -50,7 +50,7 @@ export class WhatsAppMessage extends BotMessage {
 
   async getUser() {
     const contact = await this.message.getContact();
-    const user = await getUser(`+${contact.number}`);
+    const user = await getUserByNumber(`+${contact.number}`);
 
     return user ?? undefined;
   }

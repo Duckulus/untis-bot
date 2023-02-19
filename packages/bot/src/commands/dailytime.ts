@@ -1,12 +1,12 @@
 import { Command } from "../core/command";
 import { upsertUser } from "@jamal/db";
 import { scheduleDailyTask } from "../core/daily";
-import { whatsAppClient } from "../core/clients/whatsapp";
+import { whatsAppClient } from "../core/clients";
 import { COMMAND_PREFIX } from "../utils/constants";
 
 Command.create({
   name: "dailytime",
-  execute: async (msg, args, user) => {
+  execute: async (msg, args, untis, user) => {
     if (!user) return;
     const timeString = args[0];
     if (!timeString) {
@@ -34,12 +34,12 @@ Command.create({
         return;
       }
       await upsertUser({
-        number: user.number,
+        id: user.id,
         hours: hours,
         minutes: minutes,
       });
 
-      scheduleDailyTask(whatsAppClient, user, hours, minutes);
+      scheduleDailyTask(whatsAppClient, user, untis, hours, minutes);
       await msg.reply("Daily time changed");
     }
   },

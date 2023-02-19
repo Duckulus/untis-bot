@@ -7,7 +7,7 @@ import { COMMAND_PREFIX } from "../utils/constants";
 Command.create({
   name: "timetable",
   description: "shows your timetable",
-  execute: async (msg, args, user) => {
+  execute: async (msg, args, untis, user) => {
     if (!user) {
       await msg.reply("User not found, please try again later");
       return;
@@ -24,7 +24,7 @@ Command.create({
     }
 
     let date = getDate(day);
-    const { untis_school, untis_username, untis_password, untis_eap } = user;
+    const { untis_school, untis_username, untis_password, untis_eap } = untis;
 
     if (
       !untis_school ||

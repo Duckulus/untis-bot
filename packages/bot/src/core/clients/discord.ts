@@ -8,6 +8,7 @@ import {
 import { logger } from "@jamal/logger";
 import { BotMessage, Command } from "../command";
 import { COMMAND_PREFIX } from "../../utils/constants";
+import { getUserByDiscordId } from "@jamal/db";
 
 const createDiscordClient = () => {
   const client = new Client({
@@ -68,13 +69,11 @@ export class DiscordMessage extends BotMessage {
     this.message.reply(content);
   }
 
-  // TODO: Update getUser to query database
   async getUser() {
-    // const userid = await this.message.author.id;
-    // const user = await getUser(userid);
+    const userid = await this.message.author.id;
+    const user = await getUserByDiscordId(userid);
 
-    // return user ?? undefined;
-    return undefined;
+    return user ?? undefined;
   }
 }
 

@@ -4,9 +4,9 @@ import { setSubscribed } from "@jamal/db";
 Command.create({
   name: "unsubscribe",
   description: "Unsubscribes from daily message",
-  execute: async (msg, _args, user) => {
+  execute: async (msg, _args, _untis, user) => {
     if (!user) return;
-    await setSubscribed(user.number, false);
+    await setSubscribed(user.id, false);
     await msg.reply("You unsubscribed from the daily message");
   },
 });

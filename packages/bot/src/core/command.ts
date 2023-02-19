@@ -1,7 +1,7 @@
 import fs from "fs";
 import { logger } from "@jamal/logger";
 import path from "path";
-import { User } from "@jamal/db";
+import { User, Untis, getUntis } from "@jamal/db";
 import { COMMAND_PREFIX } from "../utils/constants";
 
 export abstract class BotMessage {
@@ -21,6 +21,7 @@ export class Command {
   execute: (
     msg: BotMessage,
     args: string[],
+    untis: Untis,
     user?: User
   ) => void | Promise<void>;
 
@@ -82,6 +83,7 @@ export class Command {
 
     content = content.slice(COMMAND_PREFIX.length);
     const user = await message.getUser();
+    const untis = await getUntis(user?.id!);
     const args = content.split(" ");
     const commandName = args.shift()?.toLocaleLowerCase();
     if (!commandName) {
@@ -96,7 +98,7 @@ export class Command {
         logger.info(`Executing Command ${command.name} with args [${args}]`);
 
         try {
-          await command.execute(message, args, user);
+          await command.execute(message, args, untis[0], user);
         } catch (e) {
           logger.error(e);
           await message.reply(
@@ -119,6 +121,7 @@ export interface CommandSettings {
   execute: (
     msg: BotMessage,
     args: string[],
+    untis: Untis,
     user?: User
   ) => void | Promise<void>;
 }

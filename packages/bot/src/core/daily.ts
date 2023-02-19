@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import { getAllUsers, User } from "@jamal/db";
+import { getAllUsers, User, Untis, getUntis } from "@jamal/db";
 import { Client } from "whatsapp-web.js";
 import { COMMAND_PREFIX } from "../utils/constants";
 import { Lesson, WebUntis } from "webuntis";
@@ -12,30 +12,35 @@ const tasks: Map<string, cron.ScheduledTask> = new Map();
 export const startDailyJob = async (client: Client) => {
   const users = await getAllUsers();
   for (let user of users) {
-    scheduleDailyTask(client, user, user.hours, user.minutes);
+    let untis = (await getUntis(user.id))[0];
+    scheduleDailyTask(client, user, untis, user.hours, user.minutes);
   }
 };
 
 export const scheduleDailyTask = (
   client: Client,
   user: User,
+  untis: Untis,
   hours: number,
   minutes: number
 ) => {
-  const task = tasks.get(user.number);
+  if (!user.whatsappUserNumber) return;
+  const task = tasks.get(user.whatsappUserNumber);
   if (task) {
     task.stop();
   }
 
   tasks.set(
-    user.number,
+    user.whatsappUserNumber,
     cron.schedule(`${minutes} ${hours} * * 1-5`, async () => {
-      logger.info("Running daily job for " + user.number);
-      const contact = await client.getNumberId(user.number.substring(1));
+      logger.info("Running daily job for " + user.whatsappUserNumber);
+      const contact = await client.getNumberId(
+        user.whatsappUserNumber!.substring(1)
+      );
 
       if (!user.subscribed || !contact) return;
 
-      const { untis_school, untis_username, untis_password, untis_eap } = user;
+      const { untis_school, untis_username, untis_password, untis_eap } = untis;
 
       if (
         !untis_school ||
